@@ -18,6 +18,13 @@ export default (state, action) => {
             offers: action.payload
         }
 
+        case 'TRANSFER_EVENT':{
+            return {
+                ...state,
+                events: action.payload
+            }
+        }
+
         case 'EVENTS':
             return {
                 ...state,

@@ -56,10 +56,11 @@ export const PropertyList = () => {
             return getProperties()
         }
     }
-    const classes = useStyles();
-
+    
     returnValues = alldata()
+    console.log(reverseSort)
     let reverseSort = returnValues.reverse()
+    const classes = useStyles();
     return (
         <>
             <div className="Products">

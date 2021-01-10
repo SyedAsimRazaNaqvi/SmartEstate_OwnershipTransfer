@@ -1,4 +1,4 @@
-import { setupWeb3, web3LoadingError, addEthereumAccounts, RegisterProperty, setupContract, EnablePropertySale, PropertyPricing, Events, BuyingRequest, OfferStatus } from './actions';
+import { setupWeb3, web3LoadingError, addEthereumAccounts, RegisterProperty, setupContract, EnablePropertySale, PropertyPricing, Events, BuyingRequest, OfferStatus, TransferEvent } from './actions';
 import Web3 from 'web3';
 import SmartEstate from "../abis/SmartEstate.json";
 
@@ -12,7 +12,7 @@ export const loadBlockchain = async (dispatch) => {
             await Web3.givenProvider.enable();
             dispatch(setupWeb3(web3));
             //       0xF10F322bf589b873B4C53bEef0ca644D32730b79
-            const address = "0x389Af8Ba142C632470517b44299A1B0F17440789"
+            const address = '0x9D54d3505EeB049c307CaA11813dF74243C7c43d'
             const contract = new web3.eth.Contract(SmartEstate.abi, address)
             dispatch(setupContract(contract));
             console.log(contract)
@@ -20,8 +20,10 @@ export const loadBlockchain = async (dispatch) => {
             dispatch(addEthereumAccounts(accounts))
 
             const events = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
-
-            // console.log(events)
+            const TransferList = contract? await contract.getPastEvents('TransferList',{ fromBlock: 0, toBlock: "latest" }):null
+           // dispatch(TransferEvent(TransferList))
+           dispatch(TransferEvent(TransferList))
+            console.log(TransferList)
         } else {
             dispatch(web3LoadingError("Please install an Ethereum-compatible browser or extension like Metamask to use this DAPP"))
         }
@@ -59,10 +61,20 @@ export const property_Detail = async (contract) => {
 
    // console.log("before transaction");
     const receipt = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
-   // console.log("after transaction");
-
+    console.log("after transaction");
     return receipt;
 }
+
+export const transfer_Info =  (contract,dispatch) => {
+
+    const receipt = contract?  contract.getPastEvents('TransferList',{ fromBlock: 0, toBlock: "latest" }):null
+    //  dispatch(TransferEvent(receipt))
+      console.log("after transaction",receipt);
+
+    // console.log("before transaction");
+    
+     return receipt;
+ }
 
 export const buyer_Request = async (contract, accounts, offer, dispatch) => {
     console.log("before transaction")

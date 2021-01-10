@@ -1,4 +1,5 @@
-import React,{ useEffect, useState } from 'react'
+import { TableHead } from '@material-ui/core';
+import React, { useEffect, useState } from 'react'
 import { useStore } from '../context/GlobalState';
 import Loader from '../images/loader.gif'
 import OfferAccepting from './OfferActions/OfferAccept';
@@ -28,35 +29,46 @@ function OfferStatus({ PropertyId_TokenId }) {
         }
     })
 
-    return (<div>
-        <br />
-        <h3>Offers{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
-        { accounts[0] ? <table className="bids" style={{ width: 100 }} >
-            <thead>
-                <tr>
-                    <th>Buyer Address</th>
-                    <th>Bid (Offer in Ethers)</th>
-                    <th>Request Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            {Object.values(Data).map((item, index) => {
-                return item.map((post, i) => (
-                    <>
-                        <tbody>
-                            <tr key={post[0]} >
-                                <td><h4>{post[1]}</h4></td>
-                                <td><h4>{post[2]}</h4></td>
-                                <td><h4>{post[3]}</h4></td>
-                                <td>{<OfferAccepting PropertyId_TokenId={PropertyId_TokenId} BuyerAddress={post[1]} useStore={useStore} />}</td>
-                                <td>{<OfferRejecting PropertyId_TokenId={PropertyId_TokenId} BuyerAddress={post[1]} useStore={useStore} />}</td>
-                            </tr>
-                        </tbody>
-                    </>
-                ))
-            })}
-        </table> : <h3 >No Bids Available</h3>}
-    </div>)
+    function tableHead() {
+        if (Data == undefined || null) {
+            return (
+                <>
+
+                    <thead>
+                        <tr>
+                            <th>Buyer Address</th>
+                            <th>Bid (Offer in Ethers)</th>
+                            <th>Request Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                </>
+            )
+        }
+    }
+
+    return (<>
+        {Data != null || undefined ? <div>
+            <br />
+            <table className="bids" style={{ width: 100 }} >
+            <h3>Offers{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
+                {Object.values(Data).map((item, index) => {
+                    return item.map((post, i) => (
+                        <>
+                            <tbody>
+                                <tr key={post[0]} >
+                                    <td><h4>{post[1]}</h4></td>
+                                    <td><h4>{post[2]} Ethers</h4></td>
+                                    <td>{<OfferAccepting PropertyId_TokenId={PropertyId_TokenId} BuyerAddress={post[1]} useStore={useStore} />}</td>
+                                    <td>{<OfferRejecting PropertyId_TokenId={PropertyId_TokenId} BuyerAddress={post[1]} useStore={useStore} />}</td>
+                                </tr>
+                            </tbody>
+                        </>
+                    ))
+                })}
+            </table>
+        </div> : <div>No Bids Available for this property</div>}
+    </>)
 }
 
 export default OfferStatus;

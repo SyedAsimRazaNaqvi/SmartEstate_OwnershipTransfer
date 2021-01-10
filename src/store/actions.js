@@ -5,6 +5,13 @@ export const RegisterProperty = (property) => {
     }
 }
 
+export const TransferEvent = (events) =>{
+    return{
+        type:'TRANSFER_EVENT',
+        payload: events
+    }
+}
+
 export const OfferStatus = (PropertyId_TokenId) => {
     return {
         type: 'OFFER_STATUS',

@@ -66,7 +66,7 @@ function PropertyItem() {
     const val = id - 1;
     let dataItem = []
     dataItem = returnValues[val]
-
+//console.log(typeof(events),events)
     const data = () => {
 
         if (dataItem) {
