@@ -5,14 +5,14 @@ import SmartEstate from "../abis/SmartEstate.json";
 export const loadBlockchain = async (dispatch) => {
 
     try {
-        console.log("web3 =", Web3);
+        // console.log("web3 =", Web3);
         console.log("web3.givenProvider = ", Web3.givenProvider);
         if (Web3.givenProvider) {
             const web3 = new Web3(Web3.givenProvider);
             await Web3.givenProvider.enable();
             dispatch(setupWeb3(web3));
             //       0xF10F322bf589b873B4C53bEef0ca644D32730b79
-            const address = '0x9D54d3505EeB049c307CaA11813dF74243C7c43d'
+            const address = '0x0fE9FA82E340f1f5fEe47b9a25D7a82Dc929d072'
             const contract = new web3.eth.Contract(SmartEstate.abi, address)
             dispatch(setupContract(contract));
             console.log(contract)
@@ -22,7 +22,7 @@ export const loadBlockchain = async (dispatch) => {
             const events = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
             const TransferList = contract? await contract.getPastEvents('TransferList',{ fromBlock: 0, toBlock: "latest" }):null
            // dispatch(TransferEvent(TransferList))
-           dispatch(TransferEvent(TransferList))
+          // dispatch(TransferEvent(TransferList))
             console.log(TransferList)
         } else {
             dispatch(web3LoadingError("Please install an Ethereum-compatible browser or extension like Metamask to use this DAPP"))
@@ -65,7 +65,7 @@ export const property_Detail = async (contract) => {
     return receipt;
 }
 
-export const transfer_Info =  (contract,dispatch) => {
+export const transfer_Info =  (contract) => {
 
     const receipt = contract?  contract.getPastEvents('TransferList',{ fromBlock: 0, toBlock: "latest" }):null
     //  dispatch(TransferEvent(receipt))

@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useStore } from '../context/GlobalState';
 import BuyerRequest from './BuyerRequest';
-import { BuyProperty } from './BuyProperty';
-import About from './pages/About';
 import { SaleStatus } from './SaleStatus';
-import TransferInfo from './TransferInfo';
-// import Buyproperty from './BuyProperty';
-// import BuyerRequest from './BuyerRequest'
-
+import Loader from '../images/loader.gif'
 
 export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
 
@@ -35,8 +30,6 @@ export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
     let states = []
     const getResponse = () => {
         Object.values(Data).map((item, index) => {
-
-          //  console.log(typeof (item), item)
             for (var a in item) {
                 states = item
                 return item[a]
@@ -49,18 +42,15 @@ console.log(Data)
     const responsetoken = states.ApplyForToken
     const val = states[2]
     const BuyerAddress =states[1]
-   // console.log(response,val)
-  // console.log(typeof(PropertyId_TokenId),PropertyId_TokenId)
    var Id = parseInt(PropertyId_TokenId-1);
    var b = parseInt(responsetoken-1);
-  // console.log(typeof(b))
-  //responseStatus == "1" && responsetoken == PropertyId_TokenId
     return (
         <>
+         <h3>{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
+            {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
             {
-               accounts[0] != BuyerAddress && responsetoken != PropertyId_TokenId && accounts[0] == BuyerAddress ?  <BuyerRequest PropertyId_TokenId={PropertyId_TokenId} /> : <SaleStatus accounts={accounts[0]} responsetoken={b} val={val} responseStatus={responseStatus} Id={Id} OwnerAddress={OwnerAddress} PropertyId_TokenId={PropertyId_TokenId} BuyerAddress={BuyerAddress} />
+            accounts[0] != OwnerAddress &&  responsetoken != PropertyId_TokenId  ?  <BuyerRequest PropertyId_TokenId={PropertyId_TokenId} OwnerAddress={OwnerAddress} /> :<SaleStatus winStatus={states[5]}  accounts={accounts[0]} responsetoken={b} val={val} responseStatus={responseStatus} Id={Id} OwnerAddress={OwnerAddress} PropertyId_TokenId={PropertyId_TokenId} BuyerAddress={BuyerAddress} />
             }
-            {/* <BuyProperty PropertyId_TokenId={PropertyId_TokenId} val={val} OwnerAddress={OwnerAddress} BuyerAddress />  */}
         </>
     )
 }

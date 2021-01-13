@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useStore } from '../context/GlobalState'
-import { TransferEvent } from '../store/actions';
+// import { TransferEvent } from '../store/actions';
 import { transfer_Info } from '../store/asyncActions'
 import Web3 from 'web3'
 
 function TransferInfo({ PropertyId_TokenId }) {
-
+const Id = parseInt(PropertyId_TokenId)
     const [{ contract, accounts }, dispatch] = useStore();
     const [events, setEvents] = useState([{}])
 
     useEffect(() => {
-        async function getData() {
+         function getData() {
                 getProperty()
         }
         getData();
@@ -20,8 +20,8 @@ function TransferInfo({ PropertyId_TokenId }) {
         const response = await transfer_Info(contract)
         setEvents(response)
     }
-   // console.log(typeof(PropertyId_TokenId),PropertyId_TokenId)
-   // console.log(typeof (events), events)
+   console.log(typeof(PropertyId_TokenId),PropertyId_TokenId)
+   console.log(typeof (events), events)
 
     let returnValues = []
     const alldata = () => {
@@ -38,30 +38,21 @@ function TransferInfo({ PropertyId_TokenId }) {
     returnValues = alldata()
     // const val = id - 1;
     let dataItem = []
-    dataItem = returnValues[PropertyId_TokenId]
-    console.log(dataItem)
+    dataItem = returnValues[Id-1]
 
     const data = () => {
-        // if(!dataItem){
-        //     return <h3>Sold Out!</h3>
-        // }
         if (dataItem) {
             for (var a in dataItem) {
                 const valueInEthers= Web3.utils.fromWei(dataItem[3])
                 return <div> <h3>SoldOut!</h3>
                     <h4>New Owner: {dataItem[1]}</h4>
-                    {/* <h4>{dataItem[1]}</h4> */}
                     <h4>Sold Price: {valueInEthers} Ethers</h4>
                     <h4>{dataItem[4]}</h4>
                 </div>
             }
         }
     }
-
-    return (<div>
-        {data()}
-
-    </div>)
+    return (<div> {data()} </div>)
 }
 
 export default TransferInfo

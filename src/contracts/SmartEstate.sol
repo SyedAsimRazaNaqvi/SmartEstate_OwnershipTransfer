@@ -8,7 +8,7 @@ contract SmartEstate is ERC721 {
     uint256 private tokenId;
    // uint256 public sellerAddress;
     //event Transfer(address BuyerAddress,address OwnerAddress,address Value);
-    event TransferList(address BuyerAddress,address OwnerAddress,uint256 PropertyId_TokenId,uint256 Value,bool saleStatus);
+    event TransferList(address BuyerAddress,address OwnerAddress,uint256 PropertyId_TokenId,uint256 Value,bool saleStatus,bool WinStatus);
     event property_Pricing(uint256);
     enum offerApproval {pending, approved, rejected}
     event saleStatus(bool);
@@ -43,8 +43,9 @@ contract SmartEstate is ERC721 {
         uint256 buyerOffer;
         offerApproval request;
         uint256 ApplyForToken;
+        bool WinStatus;
     }
-    event buyer_Info(uint256 buyerId,address buyerAddress,uint256 buyerOffer,offerApproval request,uint256 PropertyId_TokenId);
+    event buyer_Info(uint256 buyerId,address buyerAddress,uint256 buyerOffer,offerApproval request,uint256 PropertyId_TokenId,bool WinStatus);
     
     modifier propertyOwner() {
         require(
@@ -146,12 +147,13 @@ contract SmartEstate is ERC721 {
             buyerAddress: msg.sender,
             buyerOffer: offerInEthers,
             request: offerApproval.pending,
-            ApplyForToken: PropertyId_TokenId
+            ApplyForToken: PropertyId_TokenId,
+            WinStatus: false
         });
         AllBuyers[PropertyId_TokenId].push(tempDetails);
         BuyerList[msg.sender] = tempDetails;
         BuyerList[msg.sender].request = offerApproval.pending;
-        emit buyer_Info(buyerId, msg.sender,offerInEthers,offerApproval.pending,PropertyId_TokenId);
+        emit buyer_Info(buyerId, msg.sender,offerInEthers,offerApproval.pending,PropertyId_TokenId,false);
         return true;
     }
 
@@ -233,7 +235,8 @@ contract SmartEstate is ERC721 {
         // _transfer(BuyerAddress, msg.sender, PropertyId_TokenId);
         // emit Transfer(BuyerAddress, msg.sender, PropertyId_TokenId);
         OnlyOwner[PropertyList[PropertyId_TokenId]].saleStatus = false;
-        emit TransferList(BuyerAddress, msg.sender, PropertyId_TokenId,PropertyPrice,false);
+         BuyerList[BuyerAddress].WinStatus = true;
+        emit TransferList(BuyerAddress, msg.sender, PropertyId_TokenId,PropertyPrice,false,BuyerList[BuyerAddress].WinStatus);
         return true;
         
     }

@@ -3,7 +3,7 @@ import { useStore } from '../context/GlobalState';
 import Web3 from 'web3'
 import Loader from '../images/loader.gif'
 
-export const BuyProperty = ({ PropertyId_TokenId, val, OwnerAddress, BuyerAddress }) => {
+export const BuyProperty = ({ PropertyId_TokenId, val, OwnerAddress, BuyerAddress,responseStatus }) => {
 
     const [{ contract, accounts }, dispatch] = useStore();
     const [isTransactionInProcess, setTransactionInProcess] = useState(false)
@@ -21,12 +21,9 @@ export const BuyProperty = ({ PropertyId_TokenId, val, OwnerAddress, BuyerAddres
             <h3>{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
             {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
 
-            {/* {BuyerAddress !== accounts[0]  ?  <div className="center"> <button className="btn" onClick={() => buy_Property()} style={{ background: "blue", color: "white" }}> Buy Property</button></div> : <h3>You Win the Property</h3> } */}
-            {       isTransactionInProcess ?
-                <div className="btn" style={{ background: "blue", color: "white" }}> Transaction in Process...</div> :
-                <div className="center"> <button className="btn" onClick={() => buy_Property()} style={{ background: "blue", color: "white" }}> Buy Property</button></div>
+            {
+                responseStatus == "1" && accounts[0] != BuyerAddress ?  <div className="center"> <button className="btn" onClick={() => buy_Property()} style={{ background: "blue", color: "white" }}> Buy Property</button></div> : <h3>My Property</h3> 
             }
-
         </>
     )
 }
