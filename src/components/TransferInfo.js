@@ -47,7 +47,7 @@ const Id = parseInt(PropertyId_TokenId)
                 return <div> <h3>SoldOut!</h3>
                     <h4>New Owner: {dataItem[1]}</h4>
                     <h4>Sold Price: {valueInEthers} Ethers</h4>
-                    <h4>{dataItem[4]}</h4>
+                    {/* <h4>{dataItem[4]}</h4> */}
                 </div>
             }
         }

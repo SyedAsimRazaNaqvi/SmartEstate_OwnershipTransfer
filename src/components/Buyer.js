@@ -12,7 +12,7 @@ export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
     const [transactionError, setTransactionError] = useState("")
 
     const [Data, setData] = useState([])
-    const getOffers = async () => await contract.methods.BuyerList(accounts[0]).call().then(function (result, error) {
+    const getOffers = async () => await contract.methods.PropertyBuyerList(PropertyId_TokenId,accounts[0]).call().then(function (result, error) {
         if (result) {
             setData({ Data: result })
         } else if (error) {
@@ -22,7 +22,7 @@ export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
             setTransactionError(error.message)
         }
     })
-
+    console.log(Data)
     useEffect(() => {
         getOffers();
     }, [])
@@ -36,14 +36,13 @@ export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
             }
         })
     }
-console.log(Data)
     const r = getResponse()
     const responseStatus = states[3]
     const responsetoken = states.ApplyForToken
     const val = states[2]
     const BuyerAddress =states[1]
-   var Id = parseInt(PropertyId_TokenId-1);
-   var b = parseInt(responsetoken-1);
+    var Id = parseInt(PropertyId_TokenId-1);
+    var b = parseInt(responsetoken-1);
     return (
         <>
          <h3>{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>

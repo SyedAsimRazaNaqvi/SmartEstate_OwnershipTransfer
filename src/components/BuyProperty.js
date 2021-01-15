@@ -20,10 +20,10 @@ export const BuyProperty = ({ PropertyId_TokenId, val, OwnerAddress, BuyerAddres
         <>
             <h3>{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
             {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
-
-            {
+            <div className="center"> <button className="btn" onClick={() => buy_Property()} style={{ background: "blue", color: "white" }}> Buy Property</button></div>
+            {/* {
                 responseStatus == "1" && accounts[0] != BuyerAddress ?  <div className="center"> <button className="btn" onClick={() => buy_Property()} style={{ background: "blue", color: "white" }}> Buy Property</button></div> : <h3>My Property</h3> 
-            }
+            } */}
         </>
     )
 }
