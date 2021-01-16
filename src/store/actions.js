@@ -47,12 +47,6 @@ export const EnablePropertySale = (tokenId) => {
     }
 }
 
-export const PropertyPricing = (PropertyId_TokenId) => {
-    return {
-        type: 'PROPERTY_PRICING',
-        payload: PropertyId_TokenId
-    }
-}
 
 export const setupWeb3 = (web3) => {
     return {

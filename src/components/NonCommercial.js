@@ -67,7 +67,7 @@ function NonCommercial() {
     returnValues = alldata()
 
     let reverseSort = returnValues.reverse()
-    console.log(reverseSort)
+    // console.log(reverseSort)
     const classes = useStyles();
     return (
         <>

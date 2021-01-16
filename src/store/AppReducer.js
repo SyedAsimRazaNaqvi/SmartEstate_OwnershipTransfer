@@ -43,11 +43,7 @@ export default (state, action) => {
                 ...state,
                 tokenId: action.payload
             }
-        case 'PROPERTY_PRICING':
-            return {
-                ...state,
-                PropertyId_TokenIds: [action.payload, ...state.PropertyId_TokenIds]
-            }
+    
         case 'SETUP_WEB3':
             return {
                 ...state,

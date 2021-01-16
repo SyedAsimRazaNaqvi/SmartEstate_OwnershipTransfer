@@ -4,6 +4,7 @@ import { useStore } from '../context/GlobalState';
 import Loader from '../images/loader.gif'
 import OfferAccepting from './OfferActions/OfferAccept';
 import OfferRejecting from './OfferActions/OfferReject';
+import { EnablePropertySale } from './EnablePropertySale'
 
 function OfferStatus({ PropertyId_TokenId }) {
 
@@ -29,25 +30,8 @@ function OfferStatus({ PropertyId_TokenId }) {
         }
     })
 
-    function tableHead() {
-        if (Data == undefined || null) {
-            return (
-                <>
-
-                    <thead>
-                        <tr>
-                            <th>Buyer Address</th>
-                            <th>Bid (Offer in Ethers)</th>
-                            <th>Request Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                </>
-            )
-        }
-    }
-
     return (<>
+        <EnablePropertySale PropertyId_TokenId={PropertyId_TokenId} />
         {Data != null || undefined ? <div>
             <br />
             <table className="bids" style={{ width: 100 }} >
@@ -68,6 +52,7 @@ function OfferStatus({ PropertyId_TokenId }) {
                 })}
             </table>
         </div> : <div>No Bids Available for this property</div>}
+     
     </>)
 }
 

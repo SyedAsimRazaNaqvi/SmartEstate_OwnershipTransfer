@@ -1,4 +1,4 @@
-import { setupWeb3, web3LoadingError, addEthereumAccounts, Lands, RegisterProperty, setupContract, EnablePropertySale, PropertyPricing, BuyingRequest, OfferStatus } from './actions';
+import { setupWeb3, web3LoadingError, addEthereumAccounts, Lands, RegisterProperty, setupContract, EnablePropertySale, BuyingRequest, OfferStatus } from './actions';
 import Web3 from 'web3';
 import SmartEstate from "../abis/SmartEstate.json";
 
@@ -104,18 +104,12 @@ export const enablePropertySale = async (contract, accounts, tokenId, dispatch) 
     dispatch(EnablePropertySale(tokenId))
 }
 
-export const propertyPricing = async (contract, accounts, PropertyId_TokenId, dispatch) => {
-    console.log("before transaction");
-    const receipt = await contract.methods.PropertyPricing(PropertyId_TokenId).send({ from: accounts[0] })
-    console.log("after trasnaction", receipt);
-    dispatch(PropertyPricing(PropertyId_TokenId));
-}
 
 export const property_Detail = async (contract) => {
 
     // console.log("before transaction");
     const receipt = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
-    console.log("after transaction",receipt);
+    console.log("after transaction");
     return receipt;
 }
 
