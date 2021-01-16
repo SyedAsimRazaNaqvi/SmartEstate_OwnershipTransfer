@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Web3 from 'web3'
 import Loader from '../images/loader.gif'
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -29,12 +30,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const PropertyList = () => {
+function NonCommercial() {
     const [events, setEvents] = useState([{}]);
     const [{ contract, accounts }, dispatch] = useStore();
     const [isTransactionInProcess, setTransactionInProcess] = useState(false)
     const [isTransactionSuccessful, setTransactionSuccessful] = useState(true)
     const [transactionError, setTransactionError] = useState("")
+
 
     useEffect(() => {
         async function getData() {
@@ -105,3 +107,4 @@ export const PropertyList = () => {
         </>
     )
 }
+export default NonCommercial;

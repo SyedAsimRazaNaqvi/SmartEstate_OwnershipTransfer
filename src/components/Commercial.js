@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Web3 from 'web3'
 import Loader from '../images/loader.gif'
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -29,12 +30,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const PropertyList = () => {
+function Commercial() {
     const [events, setEvents] = useState([{}]);
     const [{ contract, accounts }, dispatch] = useStore();
     const [isTransactionInProcess, setTransactionInProcess] = useState(false)
     const [isTransactionSuccessful, setTransactionSuccessful] = useState(true)
     const [transactionError, setTransactionError] = useState("")
+
 
     useEffect(() => {
         async function getData() {
@@ -76,7 +78,7 @@ export const PropertyList = () => {
                     <Grid container spacing={3}>
                         {(reverseSort || returnValues).map((item) => {
                             for (var a in item) {
-                                if(item[6] === "non-Commercial"){
+                                if (item[6] === "Commercial") {
                                     var id = item[1]
                                     return <Grid item s={12} sm={4} key={id}>
                                         <Paper
@@ -95,7 +97,7 @@ export const PropertyList = () => {
                                         </Paper>
                                     </Grid>
                                 }
-                               
+
                             }
                         })
                         }
@@ -105,3 +107,4 @@ export const PropertyList = () => {
         </>
     )
 }
+export default Commercial;

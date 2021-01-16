@@ -5,10 +5,17 @@ export const RegisterProperty = (property) => {
     }
 }
 
-export const TransferEvent = (events) =>{
-    return{
-        type:'TRANSFER_EVENT',
+export const TransferEvent = (events) => {
+    return {
+        type: 'TRANSFER_EVENT',
         payload: events
+    }
+}
+
+export const Lands = (land) => {
+    return {
+        type: 'LANDS',
+        payload: land
     }
 }
 

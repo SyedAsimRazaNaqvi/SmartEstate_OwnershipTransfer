@@ -25,6 +25,13 @@ export default (state, action) => {
             }
         }
 
+        case 'LANDS':{
+            return {
+                ...state,
+                lands: action.payload
+            }
+        }
+
         case 'EVENTS':
             return {
                 ...state,

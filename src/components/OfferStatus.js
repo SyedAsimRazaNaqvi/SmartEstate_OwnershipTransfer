@@ -51,7 +51,7 @@ function OfferStatus({ PropertyId_TokenId }) {
         {Data != null || undefined ? <div>
             <br />
             <table className="bids" style={{ width: 100 }} >
-            <h3>Offers{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
+                <h3>{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
                 {Object.values(Data).map((item, index) => {
                     return item.map((post, i) => (
                         <>

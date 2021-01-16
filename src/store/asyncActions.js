@@ -1,4 +1,4 @@
-import { setupWeb3, web3LoadingError, addEthereumAccounts, RegisterProperty, setupContract, EnablePropertySale, PropertyPricing, Events, BuyingRequest, OfferStatus, TransferEvent } from './actions';
+import { setupWeb3, web3LoadingError, addEthereumAccounts, Lands, RegisterProperty, setupContract, EnablePropertySale, PropertyPricing, BuyingRequest, OfferStatus } from './actions';
 import Web3 from 'web3';
 import SmartEstate from "../abis/SmartEstate.json";
 
@@ -19,11 +19,35 @@ export const loadBlockchain = async (dispatch) => {
             const accounts = await web3.eth.getAccounts();
             dispatch(addEthereumAccounts(accounts))
 
+            const TokenId = await contract.methods.tokenId().call().then(function (result, error) {
+                if (result) {
+                    // console.log(result);
+
+                    for (let i = 1; i <= result; i++) {
+                        if (contract) {
+                            const land = contract.methods.AllPropertyList(i).call().then(function (data, error) {
+                                if (data) {
+                                    dispatch(Lands(data))
+                                      // console.log(data)
+                                } else if (error) {
+                                    console.log(error)
+                                }
+                            })
+                        }
+                    }
+                } else if (error) {
+                    console.log(error)
+                }
+            })
+
             const events = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
             const TransferList = contract ? await contract.getPastEvents('Transfer', { fromBlock: 0, toBlock: "latest" }) : null
             // dispatch(TransferEvent(TransferList))
             // dispatch(TransferEvent(TransferList))
-            console.log(TransferList)
+            //console.log(TransferList)
+
+
+
         } else {
             dispatch(web3LoadingError("Please install an Ethereum-compatible browser or extension like Metamask to use this DAPP"))
         }
@@ -33,6 +57,36 @@ export const loadBlockchain = async (dispatch) => {
         if (error.code === 4001)
             dispatch(web3LoadingError(error.message))
     }
+}
+
+export const PropertyList = async (contract, accounts, Lands, dispatch) => {
+
+    console.log("before transaction")
+
+    const receipt = await contract.methods.tokenId().call({ from: accounts[0] }).then(function (result, error) {
+        if (result) {
+            // console.log(result);
+
+            for (let i = 1; i <= result; i++) {
+                const land = contract.methods.AllPropertyList(i).call()
+                .then(function (data, error) {
+                    if (data) {
+                        dispatch(Lands(data))
+                        console.log(data)
+                        return data
+                    } else if (error) {
+                        console.log(error)
+                    }
+                })
+                return land
+            }
+            return result
+        } else if (error) {
+            console.log(error)
+        }
+    })
+    console.log("after transaction", receipt)
+    return receipt
 }
 
 export const registerPropertyAsync = async (contract, accounts, property, dispatch) => {
@@ -61,7 +115,7 @@ export const property_Detail = async (contract) => {
 
     // console.log("before transaction");
     const receipt = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
-    console.log("after transaction");
+    console.log("after transaction",receipt);
     return receipt;
 }
 
