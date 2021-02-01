@@ -47,6 +47,12 @@ export const EnablePropertySale = (tokenId) => {
     }
 }
 
+export const owners =(ownerList) =>{
+    return {
+        type:'OWNER_LIST',
+        payload: ownerList
+    }
+}
 
 export const setupWeb3 = (web3) => {
     return {

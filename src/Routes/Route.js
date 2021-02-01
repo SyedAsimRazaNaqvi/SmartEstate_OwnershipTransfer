@@ -26,7 +26,7 @@ function RouteConfig() {
                     <Link to="/"> Home </Link>
                     <Link to="/RegisterProperty"> Register Property </Link>
                     <Link to="/property"> Property List </Link>
-                    <Link to="/residentual"> Residentual </Link>
+                    <Link to="/residential"> Residentual </Link>
                     <Link to="/commercial"> Commercial </Link>
                     <Link to="/about"> About </Link>
 
@@ -38,7 +38,7 @@ function RouteConfig() {
                     <Route exact path="/RegisterProperty" component={RegisterProperty} />
                     <Route exact path="/property" component={propertyList} />
                     <Route exact path="/commercial" component={Commercial} />
-                    <Route exact path="/residentual" component={NonCommercial} />
+                    <Route exact path="/residential" component={NonCommercial} />
                     <Route path="/property/:id" component={PropertyItem} />
                     <Route path="*" component={() => <h2> 404 Not Found</h2>} />
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import SoldOutList from '../SoldOutList'
 import TransferInfo from '../TransferInfo'
 
 function Home() {
@@ -6,7 +7,6 @@ function Home() {
     <div >
       <h1>Welcome to Home page</h1>
 
-      {/* <TransferInfo  /> */}
     </div>
   );
 }

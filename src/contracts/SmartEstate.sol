@@ -42,7 +42,10 @@ contract SmartEstate is ERC721 {
         uint256 ApplyForToken;
     }
 
-    event buyer_Info(uint256 buyerId,address buyerAddress,uint256 buyerOffer,offerApproval request,uint256 PropertyId_TokenId);
+    event buyer_Info(uint256 buyerId,
+    address buyerAddress,
+    uint256 buyerOffer,offerApproval request,
+    uint256 PropertyId_TokenId);
     
     modifier propertyOwner() {
         require(
@@ -98,7 +101,13 @@ contract SmartEstate is ERC721 {
         OnlyOwner[msg.sender] = tempDetails;
         PropertyList[thisId] = msg.sender;
         AllPropertyList[thisId] = tempDetails;
-        emit property_detail( msg.sender, thisId, _propertyAddress, _city,_room, _area, _propertyType, _priceInEther, _image,false);
+        emit property_detail( msg.sender,
+            thisId,
+            _propertyAddress,
+            _city,_room, _area,
+            _propertyType,
+            _priceInEther,
+            _image,_saleStatus);
         return true;
     }
 
@@ -246,6 +255,7 @@ contract SmartEstate is ERC721 {
         address BuyerAddress = OnlyOwner[PropertyList[PropertyId_TokenId]].sellerAddress;
          _transfer(BuyerAddress, msg.sender, PropertyId_TokenId);
          OnlyOwner[PropertyList[PropertyId_TokenId]].saleStatus = false;
+        //  OnlyOwner[PropertyList[PropertyId_TokenId]].sold = true;
         return true;
     }
 }

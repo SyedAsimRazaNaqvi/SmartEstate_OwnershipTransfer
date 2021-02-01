@@ -12,20 +12,26 @@ export default (state, action) => {
                 PropertyId_TokenIds: action.payload
             }
 
-        case 'BUYING_REQUEST': 
-        return {
-            ...state,
-            offers: action.payload
-        }
+        case 'OWNER_LIST':
+            return {
+                ...state,
+                ownerList: [action.payload,...state.ownerList]
+            }
 
-        case 'TRANSFER_EVENT':{
+        case 'BUYING_REQUEST':
+            return {
+                ...state,
+                offers: action.payload
+            }
+
+        case 'TRANSFER_EVENT': {
             return {
                 ...state,
                 events: action.payload
             }
         }
 
-        case 'LANDS':{
+        case 'LANDS': {
             return {
                 ...state,
                 lands: action.payload
@@ -35,7 +41,7 @@ export default (state, action) => {
         case 'EVENTS':
             return {
                 ...state,
-                events: [action.payload,...state.events]
+                events: [action.payload, ...state.events]
             }
 
         case 'ENABLE_PROPERTY_SALE':
@@ -43,7 +49,7 @@ export default (state, action) => {
                 ...state,
                 tokenId: action.payload
             }
-    
+
         case 'SETUP_WEB3':
             return {
                 ...state,

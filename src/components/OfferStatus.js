@@ -51,7 +51,7 @@ function OfferStatus({ PropertyId_TokenId }) {
                     ))
                 })}
             </table>
-        </div> : <div>No Bids Available for this property</div>}
+        </div> : <h3>No Bids Available for this property</h3>}
      
     </>)
 }

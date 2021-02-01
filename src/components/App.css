@@ -20,6 +20,8 @@ h3, image{
     text-align: center;
 }
 
+
+
 .bids >tr,td{
   border: 1px solid black;
 }
@@ -44,19 +46,35 @@ h3, image{
   }
 
   .eachItem :hover{
-    padding: 5px;
+    padding: 1.5px;
     /* background-color: rgb(149, 205, 207); */
-    box-shadow: 0 0 10px rgb(149, 205, 207);
-    text-decoration: transparent;
+     /* box-shadow: 0 0 10px rgb(149, 205, 207); */
+    text-decoration: none; 
   }
 
-.Products{
+div.Products{
 display: flex;
 flex-direction: row;
 margin-left: 150px;
 margin-right: 150px;
 justify-content: space-around;
 flex-wrap: wrap;
+padding-top: 18px;
+}
+
+
+.ProductItem{
+  margin-bottom: 10px;
+  /* width: 80%; */
+  box-shadow: 0px 0px black;
+  padding: 5px;
+  
+  justify-content: space-around;
+}
+
+.ProductItem Link{
+  color: black;
+  text-decoration: none;
 }
 
 .text{

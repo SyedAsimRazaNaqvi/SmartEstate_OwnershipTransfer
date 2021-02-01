@@ -30,21 +30,25 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Commercial() {
+
+function SoldOutList() {
     const [events, setEvents] = useState([{}]);
-    const [{ contract, accounts }, dispatch] = useStore();
+    const [Data, setData] = useState([{}]);
+    const [{ contract, accounts, ownerList }, dispatch] = useStore();
     const [isTransactionInProcess, setTransactionInProcess] = useState(false)
     const [isTransactionSuccessful, setTransactionSuccessful] = useState(true)
     const [transactionError, setTransactionError] = useState("")
     const [myData, setmyData] = useState([])
 
+
+
     useEffect(() => {
         async function getData() {
             const response = await property_Detail(contract)
             setEvents(response)
+            console.log(ownerList)
         }
         getData();
-
 
     }, [contract])
 
@@ -79,6 +83,25 @@ function Commercial() {
             }
         )();
     }, [events])
+
+    // const checkLengthOwners = () => {
+
+    //     myData.map((list, index) => {
+    //         for (var a in list) {
+    //            // console.log(list[0])
+    //             for ( var b in list[index]){
+    //                 console.log(b)
+    //             }
+    //         }
+    //     })
+    //     // for (var a in ownerList.length){
+    //     //     if(events[0]){
+
+    //     //     }
+    //     // }
+    // }
+    // checkLengthOwners()
+    // console.log(myData[0])
     const classes = useStyles();
     return (
         <>
@@ -89,7 +112,7 @@ function Commercial() {
                     <Grid container spacing={3}>
                         {(myData).map((item) => {
                             for (var a in item) {
-                                if (item[6] === "Commercial") {
+                                if (item[3] === "Commercial") {
                                     var id = item[1]
                                     return (
                                         <div className="ProductItem">
@@ -118,4 +141,4 @@ function Commercial() {
         </>
     )
 }
-export default Commercial;
+export default SoldOutList;

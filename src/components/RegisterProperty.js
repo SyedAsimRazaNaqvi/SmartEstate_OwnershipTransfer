@@ -113,7 +113,7 @@ export const RegisterProperty = () => {
                             onChange={(e) => setpropertyType(e.target.value)} >
                             <option disabled="disabled"></option>
                             <option value="Commercial">Commercial</option>
-                            <option value="Residentual">Residentual (House,Flats Etc..)</option>s
+                            <option value="Residential">Residential (House,Flats Etc..)</option>s
                     </select></td>
                     </tr>
                     <tr>
