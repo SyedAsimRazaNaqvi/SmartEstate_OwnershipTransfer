@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from '../ButtonElement'
 import { InfoContainer,
 InfoWrapper,
 InfoRow,
@@ -11,7 +10,8 @@ Heading,
 Subtitle,
 BtnWrap,
 ImgWrap,
-Img } from "./InfoElements";
+Img,
+Img1 } from "./InfoElements";
 
 const InfoSection = ({lightBg, 
     id, 
@@ -21,9 +21,14 @@ const InfoSection = ({lightBg,
     headline, 
     darkText, 
     description, 
+    description1, 
+    description2, 
+    description3, 
     buttonLabel, 
     img, 
+    img1, 
     alt,
+    alt1,
     primary,
     dark,
     dark2}
@@ -35,11 +40,14 @@ const InfoSection = ({lightBg,
                   <InfoRow imgStart={imgStart}>
                       <Column1>
                       <TextWrapper>
-                          <TopLine> {topLine} </TopLine>
+                          <TopLine>  {topLine}  </TopLine>
                           <Heading lightText={lightText}>{headline}</Heading>
-                          <Subtitle darkText={darkText}>{description}</Subtitle>
+                          <Subtitle darkText={darkText}> {description}</Subtitle>
+                          <Subtitle darkText={darkText}> {description1}</Subtitle>
+                          <Subtitle darkText={darkText}> {description2}</Subtitle>
+                          <Subtitle darkText={darkText}> {description3}</Subtitle>
                           <BtnWrap>
-                              <Button to='home'
+                              {/* <Button to='home'
                               smooth= {true}
                               duration= {500}
                               spy= {true}
@@ -47,7 +55,7 @@ const InfoSection = ({lightBg,
                               offset= {-80}
                               primary= {primary ? 1 : 0}
                               dark = {dark ? 1 : 0}
-                              dark2= {dark2 ? 1 : 0}> {buttonLabel} </Button>
+                              dark2= {dark2 ? 1 : 0}> {buttonLabel} </Button> */}
                           </BtnWrap>
                       </TextWrapper>
                       </Column1>
@@ -55,6 +63,7 @@ const InfoSection = ({lightBg,
                       <Column2>
                       <ImgWrap>
                         <Img src={img} alt={alt} />
+                        <Img1 src={img1} alt={alt1} />
                       </ImgWrap>
                       </Column2>
                       

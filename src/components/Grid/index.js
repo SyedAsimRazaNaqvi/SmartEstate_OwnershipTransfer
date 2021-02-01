@@ -1,7 +1,7 @@
 import React from 'react'
-import Icon1 from '../images/buy_house_image.svg'
-import Icon2 from '../images/image2.svg'
-import Icon3 from '../images/image3.svg'
+import Icon1 from '../images/Disributed.svg'
+import Icon2 from '../images/Transparency.png'
+import Icon3 from '../images/immutabilty.png'
 
 import { ServiceContainer,
 ServicesH1,
@@ -20,19 +20,19 @@ const Grid = () => {
                 <ServicesCard>
                     <ServicesIcon src={Icon1}/>
                     <ServicesH2></ServicesH2>
-                <ServiceP> ABCD </ServiceP>
+                <ServiceP> Decentralization </ServiceP>
                 </ServicesCard>
                 
                 <ServicesCard>
                     <ServicesIcon src={Icon2}/>
                     <ServicesH2></ServicesH2>
-                <ServiceP></ServiceP>
+                <ServiceP> Transparency </ServiceP>
                 </ServicesCard>
                 
                 <ServicesCard>
                     <ServicesIcon src={Icon3}/>
                     <ServicesH2></ServicesH2>
-                <ServiceP></ServiceP>
+                <ServiceP> Immutability </ServiceP>
                 </ServicesCard>
 
             </ServicesWrapper>

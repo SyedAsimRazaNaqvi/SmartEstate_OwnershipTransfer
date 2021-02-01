@@ -6,16 +6,15 @@ Styles go here
   font-family: ' Encode Sans Expanded ', sans-serif;
 }
 .navitem{
-  color: #fff;
+  color: #fff !important;
     display: flex;
     align-items: center;
     text-decoration: none;
     padding: 0 1rem;
     height: 100%;
-    cursor: pointer;
-
-    
+    cursor: pointer;   
 }
+
 .NavBtn{
   display: flex;
 align-items: center;
@@ -27,9 +26,52 @@ align-items: center;
 .heading{
   margin-top: 100px;
 }
+
+.h3{
+  justify-content: center;
+  text-align: center;
+  color: azure;
+background: linear-gradient(108deg, rgba(1, 147, 86, 1) 0%, rgba(10, 201, 122, 1) 100%);
+}
+
+.card{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.box1{
+  padding: 0px 200px 0px 0px;
+
+}
+
+.registerform{
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.registerform1{
+  margin-left: 55px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.class.root{
+  justify-content: center !important;
+  text-align: center !important;
+}
+
 .register-property{
-  margin:0 auto;
-  
+  margin:0 auto; 
+}
+
+td,tr{
+  padding: 30px 0 0 0;
+}
+
+.Card{
+  box-shadow: 2px 5px 10px;
+  padding: 50px 0px 50px 15px; 
+  background: linear-gradient(120deg, rgb(240, 240, 240) 0%, rgba(10, 201, 122, 1) 100%);
 }
 .property-list{
   margin:0 auto;
