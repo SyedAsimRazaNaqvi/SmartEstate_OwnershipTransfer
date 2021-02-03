@@ -4,83 +4,38 @@ import { useStore } from '../context/GlobalState'
 import { registerPropertyAsync } from '../store/asyncActions'
 import Loader from '../images/loader.gif'
 import { EthAccountInfo } from './EthAccountInfo'
-import { EnablePropertySale } from './EnablePropertySale'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import { withStyles } from '@material-ui/core/styles';
-import { green, lightGreen } from '@material-ui/core/colors';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import "./App.css" 
+import "./App.css"
 
 
 const useStyle = makeStyles((theme) => ({
-  root:  { 
-    '& > *': {
-      margin: theme.spacing(1),
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+        },
     },
-  },
-  input: {
-    display: 'none',
-  },
+    input: {
+        display: 'none',
+    },
 }));
 
 
-
-const GreenCheckbox = withStyles({
-  root: {
-    color: green[400],
-    '&$checked': {
-      color: green[600],
-    },
-  },
-  checked: {},
-})((props) => <Checkbox color="default" {...props} />);
-
-export default function CheckboxLabels() {
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-    checkedF: true,
-    checkedG: true,
-  });
-}
-  
-
 const useStyles = makeStyles((theme) => ({
     root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '50ch',
-      },
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '50ch',
+        },
     },
-  }));
+}));
 export const RegisterProperty = () => {
 
     const classes = useStyles();
-    const [state, setState] = React.useState({
-        age: '',
-        name: 'hai',
-      });
-    
-      const handleChange = (event) => {
-        const name = event.target.name;
-        setState({
-          ...state,
-          [name]: event.target.value,
-        });
-      };
 
-
-    
     const ipfsClient = require('ipfs-http-client')
     const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
@@ -90,7 +45,7 @@ export const RegisterProperty = () => {
     const [_area, setarea] = useState("")
     const [_priceInEther, setpriceInEther] = useState(0)
     const [_propertyType, setpropertyType] = useState("")
-    const [_saleStatus, setsaleStatus] = useState(false)
+    const [_saleStatus, setsaleStatus] = useState(true)
     const [_tokenUri, settokenUri] = useState("")
     const [_buffer, _setbuffer] = useState()
 
@@ -98,7 +53,7 @@ export const RegisterProperty = () => {
     const [isTransactionInProcess, setTransactionInProcess] = useState(false)
     const [isTransactionSuccessful, setTransactionSuccessful] = useState(true)
     const [transactionError, setTransactionError] = useState("")
-    let _image;
+
     const onSubmit = async (e) => {
 
         e.preventDefault();
@@ -148,108 +103,95 @@ export const RegisterProperty = () => {
             <EthAccountInfo />
             <h3 className="h3">Add new Property{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
             {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
-           
-           <div className="card">
-            <form className={classes.root} noValidate autoComplete="off">
-     
-      
-      <TextField className="box1" id="outlined-basic" label="Address" value={_propertyAddress} onChange={(e) => setpropertyAddress(e.target.value)} variant="outlined" required/>
-      
-      <TextField id="outlined-basic"  label="City"value={_city} onChange={(e) => setcity(e.target.value)} variant="outlined" required/>
-            
-            <div className="registerform"></div>
-      
-      <TextField id="outlined-basic" label="Area" onChange={(e) => setarea(e.target.value)} variant="outlined" required/>
 
-      <FormControl variant="outlined" >
-
-        <InputLabel  htmlFor="outlined-room-native-simple">Rooms</InputLabel>
-
-        <Select
-          native
-          value={_room}onChange={(e) => setroom(e.target.value)}
-          label="Room"
-          inputProps={{
-            name: 'room',
-            id: 'outlined-room-native-simple',
-          }}
-        >
-          <option aria-label="None" value="" />
-          <option value="+1">+1</option>
-          <option value="+2">+2</option>
-          <option value="+3">+3</option>
-          <option value="+4">+4</option>
-          <option value="+5">+5</option>
-          <option value="+6">+6</option>
-        </Select> 
-      </FormControl>
-      
-
-      <label className="registerform1">SaleStatus</label>
-      <FormControlLabel
-        control={<GreenCheckbox checked={state.checkedG}onChange={(e) => setsaleStatus(e.target.value)} name="checkedG" />}
-        label="True" />
-        <FormControlLabel
-      control={<Checkbox checked={state.checkedA}  onChange={(e) => setsaleStatus(e.target.value)} name="checkedA" />}
-      label="False"
-      />
+            <div className="card">
+                <form className={classes.root} onSubmit={onSubmit}>
 
 
+                    <TextField className="box1" id="outlined-basic" label="Address" value={_propertyAddress} onChange={(e) => setpropertyAddress(e.target.value)} variant="outlined" required />
 
-<div className="registerform"></div>
+                    <TextField id="outlined-basic" label="City" value={_city} onChange={(e) => setcity(e.target.value)} variant="outlined" required />
 
-<FormControl variant="outlined" >
+                    <div className="registerform"></div>
 
-<InputLabel  htmlFor="outlined-room-native-simple">Property Listing</InputLabel>
+                    <TextField id="outlined-basic" label="Area" onChange={(e) => setarea(e.target.value)} variant="outlined" required />
 
-<Select
-  native
-  value={_propertyType}
-  onChange={(e) => setpropertyType(e.target.value)} 
-  label="Property List"
-  inputProps={{
-    name: '',
-    id: 'outlined-room-native-simple',
-  }}
->
-  <option aria-label="None" value="" />
-  <option value="Commercial">Commercial</option>
-  <option value="Non-commercial">Non-Commercial</option>
-  
-</Select> 
-</FormControl>
+                    <FormControl variant="outlined" >
+
+                        <InputLabel htmlFor="outlined-room-native-simple">Rooms</InputLabel>
+
+                        <Select
+                            native
+                            value={_room} onChange={(e) => setroom(e.target.value)}
+                            label="Room"
+                            inputProps={{
+                                name: 'room',
+                                id: 'outlined-room-native-simple',
+                            }}
+                        >
+                            <option aria-label="None" value="" />
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                            <option value="3">+3</option>
+                            <option value="4">+4</option>
+                            <option value="5">+5</option>
+                            <option value="6">+6</option>
+                        </Select>
+                    </FormControl>
+
+                    <div className="registerform"></div>
+
+                    <FormControl variant="outlined" >
+
+                        <InputLabel htmlFor="outlined-room-native-simple">Property Listing</InputLabel>
+
+                        <Select
+                            native
+                            value={_propertyType}
+                            onChange={(e) => setpropertyType(e.target.value)}
+                            label="Property List"
+                            inputProps={{
+                                name: '',
+                                id: 'outlined-room-native-simple',
+                            }}
+                        >
+                            <option aria-label="None" value="" />
+                            <option value="Commercial">Commercial</option>
+                            <option value="Residential">Residential</option>
+
+                        </Select>
+                    </FormControl>
 
 
-<TextField type="number"  id="outlined-basic"  label="Amount" value={_priceInEther} onChange={(e) => setpriceInEther(e.target.value)} variant="outlined" required/>
-<div className={buttonclasses.root}>
-      <input
-        accept="image/*"
-        className={buttonclasses.input}
-        id="contained-button-file"
-        multiple
-        type="file"
-      />
-      <label htmlFor="contained-button-file">
-        <Button variant="contained" color="disabled" component="span">
-          Upload
-        </Button>
-      </label>
-      <input accept="image/*" className={buttonclasses.input} id="icon-button-file" type="file" />
-      <label htmlFor="icon-button-file">
-        <IconButton color="disabled"  aria-label="upload picture" component="span">
-          <PhotoCamera />
-        </IconButton>
-      </label>
-    </div>
-                              
+                    <TextField type="number" id="outlined-basic" label="Amount" value={_priceInEther} onChange={(e) => setpriceInEther(e.target.value)} variant="outlined" required />
 
-      
-{/* <TextareaAutosize type="textarea" id="outlined-basic" label="Additional Information" value={_tokenUri} onChange={(e) => settokenUri(e.target.value)}  variant="outlined" aria-label="empty textarea" placeholder="Empty" required/> */}
+                    <div>
+                        <input type="file" name="_image" onChange={(e) => {
+                            e.preventDefault()
+                            const file = e.target.files[0]
+                            const reader = new window.FileReader()
+                            reader.readAsArrayBuffer(file)
+                            reader.onloadend = () => {
+                                _setbuffer(Buffer(reader.result))
+                            }
+                        }
+                        } />
+                    </div>
 
-      <TextField style={{width:"102.25ch"}} type="textarea" id="outlined-basic"  label="Additional Information" value={_tokenUri} onChange={(e) => settokenUri(e.target.value)}  variant="outlined" required/>
-    
-           </form>
-    </div>       {/* <form onSubmit={onSubmit} className="form">
+
+
+
+                    <TextField style={{ width: "102.25ch" }} type="textarea" id="outlined-basic" label="Additional Information" value={_tokenUri} onChange={(e) => settokenUri(e.target.value)} variant="outlined" required />
+                    {
+                        isTransactionInProcess ?
+                            <div className="btn" style={{ background: "blue", color: "white" }}> Transaction in Process...</div> :
+                            <div className="center"> <button className="btn" style={{ background: "blue", color: "white" }}> Register Property</button></div>
+                    }
+                </form>
+            </div>
+
+
+            {/* <form onSubmit={onSubmit} className="form">
                
                             <table className="register-property" >
                     <div className="Card">

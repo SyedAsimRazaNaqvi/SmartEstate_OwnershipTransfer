@@ -27,26 +27,32 @@ const Navbar = ({ toggle }) => {
                 </MobileIcon>
                
                 <NavMenu> 
-               
+                <NavItem >
+                       <div className="navitem"> 
+                       <Link className="link" to="">Home</Link></div>
+                    </NavItem>
                     <NavItem >
-                       <div className="navitem"> <Link className="link" to="propertyList">Property List</Link></div>
+                       <div className="navitem"> 
+                       <Link className="link" to="about">About</Link></div>
+                    </NavItem>
+
+                    <NavItem >
+                       <div className="navitem"> 
+                       <Link className="link" to="property">Property List</Link></div>
                     </NavItem>
 
                     <NavItem>
-                    <div className="navitem"> <Link className="link" to="commercial">Commercial</Link></div>
+                    <div className="navitem">
+                         <Link className="link" to="commercial">Commercial</Link></div>
                     </NavItem>
                     
                       <NavItem>
-                      <div className="navitem"> <Link className="link" to="noncommercial"> Non-Commercial </Link> </div>
+                      <div className="navitem">
+                           
+                        <Link className="link" to="residential">Residential</Link>
+                        </div>
                     </NavItem>
-                
-                    <NavItem>
-                    <div className="navitem">  <Link className="link" to="About">About</Link></div>
-                    </NavItem>
-                {/* <NavItem>
-                <div className="navitem"> <Link to='/RegisterProperty'> Register Property </Link></div>
-                </NavItem> */}
-
+             
             <NavBtn>
                 <Link className="Btn" to='/RegisterProperty'> Register Property </Link>
             </NavBtn>

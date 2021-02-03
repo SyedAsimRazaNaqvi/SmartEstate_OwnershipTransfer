@@ -1,47 +1,57 @@
 import React from 'react'
-import { SidebarContainer,
-Icon,
-CloseIcon,
-SidebarWrapper,
-SidebarMenu,
-SidebarLink,
-SideBtnWrap,
-SidebarRoute
- } from "./SidebarElements";
+import {
+    SidebarContainer,
+    Icon,
+    CloseIcon,
+    SidebarWrapper,
+    SidebarMenu,
+    SidebarLink,
+    SideBtnWrap,
+    SidebarRoute
+} from "./SidebarElements";
+import { Link } from 'react-router-dom';
 
-const Sidebar = ({toggle, isOpen}) => {
+const Sidebar = ({ toggle, isOpen }) => {
     return (
-        <SidebarContainer isOpen= { isOpen } onClick={ toggle }>
-            
-            <Icon onClick= { toggle }>
+        <SidebarContainer isOpen={isOpen} onClick={toggle}>
+
+            <Icon onClick={toggle}>
 
                 <CloseIcon />
-            
+
             </Icon>
-            
+
             <SidebarWrapper>
                 <SidebarMenu>
 
-                    
-                <SidebarLink to='buy' onClick= { toggle }> Buy </SidebarLink>
-                
-                
-                    
-                <SidebarLink to='commercial' onClick= { toggle }> Commercial </SidebarLink>
-                
-                
-                    
-                <SidebarLink to='noncommercial' onClick= { toggle }> Non-Commercial </SidebarLink>
-                
-                
-                    
-                <SidebarLink to='about'onClick= { toggle }> About </SidebarLink>
-                
-                
+
+                    <SidebarLink to='Home' onClick={toggle}>
+                        <Link className='link' to="/">Home</Link>
+                    </SidebarLink>
+
+                    <SidebarLink to='about' onClick={toggle}>
+                        <Link className='link' to="about">About</Link>
+                    </SidebarLink>
+
+
+                    <SidebarLink to='property' onClick={toggle}>
+                        <Link className='link' to="property">Property List</Link>
+                    </SidebarLink>
+
+                    <SidebarLink to='commercial' onClick={toggle}>
+                        <Link className='link' to="commercial">Commercial</Link>
+                    </SidebarLink>
+
+                    <SidebarLink to='residential' onClick={toggle}>
+                        <Link className='link' to="residential">Residential</Link>
+                    </SidebarLink>
+
+                    <SidebarLink to='RegisterProperty ' onClick={toggle}>
+                        <Link className='Btn' to='/RegisterProperty'> Register Property </Link>
+                    </SidebarLink>
+
+
                 </SidebarMenu>
-                <SideBtnWrap>
-                    <SidebarRoute to="/listproperty"> List Property </SidebarRoute>
-                </SideBtnWrap>
             </SidebarWrapper>
         </SidebarContainer>
     );
