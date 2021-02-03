@@ -43,7 +43,7 @@ max-width: 1100px;
 
 export const NavLogo = styled(LinkR)
 `
-color: #fffff;
+color: #fff;
 justify-self: flex-start;
 cursor: pointer;
 font-size: 1.5rem;
@@ -83,6 +83,7 @@ margin-right: -22px;
 
 export const NavItem = styled.li`
 height: 80px;
+
 `
 
 export const NavLink = styled(LinkS)`
@@ -124,6 +125,6 @@ export const NavBtnLink = styled(LinkR)`
     &:hover {
         transition: all 0.5s ease-in-out;
         background: #fff;
-        color: #010606;
+        color: #01060;
     }
 `;

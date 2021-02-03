@@ -19,7 +19,7 @@ const Navbar = ({ toggle }) => {
         <Nav>
             <NavbarContainer>
 
-                <NavLogo to="/">Smart Estate</NavLogo>
+                <NavLogo className="logo" to="/">Smart Estate</NavLogo>
         
 
                 <MobileIcon onClick={ toggle }>
@@ -29,27 +29,27 @@ const Navbar = ({ toggle }) => {
                 <NavMenu> 
                
                     <NavItem >
-                       <div className="navitem"> <Link to="propertyList">Property List</Link></div>
+                       <div className="navitem"> <Link className="link" to="propertyList">Property List</Link></div>
                     </NavItem>
 
                     <NavItem>
-                    <div className="navitem"> <Link to="commercial">Commercial</Link></div>
+                    <div className="navitem"> <Link className="link" to="commercial">Commercial</Link></div>
                     </NavItem>
                     
                       <NavItem>
-                      <div className="navitem"> <Link to="noncommercial"> Non-Commercial </Link> </div>
+                      <div className="navitem"> <Link className="link" to="noncommercial"> Non-Commercial </Link> </div>
                     </NavItem>
                 
                     <NavItem>
-                    <div className="navitem">  <Link to="About">About</Link></div>
+                    <div className="navitem">  <Link className="link" to="About">About</Link></div>
                     </NavItem>
-                <NavItem>
+                {/* <NavItem>
                 <div className="navitem"> <Link to='/RegisterProperty'> Register Property </Link></div>
-                </NavItem>
+                </NavItem> */}
 
-            {/* <NavBtn>
-                <Link to='/RegisterProperty'> Register Property </Link>
-            </NavBtn> */}
+            <NavBtn>
+                <Link className="Btn" to='/RegisterProperty'> Register Property </Link>
+            </NavBtn>
 
                 </NavMenu>
             </NavbarContainer>
