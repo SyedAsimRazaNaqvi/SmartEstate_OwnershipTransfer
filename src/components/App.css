@@ -1,119 +1,116 @@
 Styles go here
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: ' Encode Sans Expanded ', sans-serif;
+body {
+    background-color: #00bcd4;
+    margin: 0 auto;
+    
 }
-.navitem{
-  color: #fff ;
-    display: flex;
-    align-items: center;
+
+.center{
+    text-align: center;
+    
+}
+
+.form > div{
+    text-align: center;
+    margin-left: 0;
+   
+}
+
+h3, image{
+    text-align: center;
+}
+
+
+
+.bids >tr,td{
+  border: 1px solid black;
+}
+
+.navContainer{
+    margin:0 10px;
+    color: black;
     text-decoration: none;
-    font-size: 1rem;
-    outline: none;
-    margin-top: 8px;
-    margin-right: 32px;
-    justify-content: center;
-    justify-self: flex-start;
-    height: 80px;
-    cursor: pointer;   
+    padding:8px;
+    border:1px solid;
+    border-radius:5px;
 }
 
-.logo:hover{
-  color: #fff !important;
-  text-decoration: none !important;
+.eachItem{
+    padding: 20px;
+    text-decoration: transparent;
+    color: black;
+  }
+
+ .link {
+   text-align: center;
+  }
+
+  .eachItem :hover{
+    padding: 1.5px;
+    /* background-color: rgb(149, 205, 207); */
+     /* box-shadow: 0 0 10px rgb(149, 205, 207); */
+    text-decoration: none; 
+  }
+
+div.Products{
+display: flex;
+flex-direction: row;
+margin-left: 150px;
+margin-right: 150px;
+justify-content: space-around;
+flex-wrap: wrap;
+padding-top: 18px;
 }
 
-.link{
-color: #fff !important;
-text-decoration: none !important;
+
+.ProductItem{
+  margin-bottom: 10px;
+  /* width: 80%; */
+  box-shadow: 0px 0px black;
+  padding: 5px;
+  
+  justify-content: space-around;
 }
 
-.link:hover{
-  color: #fff;
+.ProductItem Link{
+  color: black;
+  text-decoration: none;
 }
 
-.Btn{
-  border-radius: 50px ;
-    background: #01bf71;
-    white-space: nowrap;
-    padding: 10px 22px;
-    color: #010606;
-    font-size: 16px;
-    outline: none;
-    border: none;
-    margin-top: 15px;;
-    cursor: pointer;
-    transition: all 0.2 ease-in-out;
-    text-decoration: none;
+.text{
+  text-decoration: transparent;
+  padding: 5px;
+  text-transform: uppercase;
+  color: #282c34;
+  margin-left: 30px;
+}
+
+.align{
+  text-align: center;
+}
+
+.title{
+  text-align: center;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
-align-items: center;
-
-
-@media screen and (max-width: 768px) {
-    display: none;
-}
-} 
-.Btn:hover{
-  transition: all 0.2s ease-in-out;
-        white-space: nowrap;
-        outline: none;
-        background: #fff !important;
-        color: #010606;
-}
- .heading{
-  margin-top: 100px; 
-} 
-
-.h3{
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  text-align: center;
-  color: azure;
-background: linear-gradient(108deg, rgba(1, 147, 86, 1) 0%, rgba(10, 201, 122, 1) 100%);
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.card{
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-.box1{
-  padding: 0px 200px 0px 0px;
 
-}
-
-.registerform{
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.registerform1{
-  margin-left: 55px !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.class.root{
-  justify-content: center !important;
-  text-align: center !important;
-}
-
-.register-property{
-  margin:0 auto; 
-}
-
-td,tr{
-  padding: 30px 0 0 0;
-}
-
-.Card{
-  box-shadow: 2px 5px 10px;
-  padding: 50px 0px 50px 15px; 
-  background: linear-gradient(120deg, rgb(240, 240, 240) 0%, rgba(10, 201, 122, 1) 100%);
-}
-.property-list{
-  margin:0 auto;
-  text-align: center;
-  margin-bottom: "20px";
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -1,27 +1,68 @@
-import { setupWeb3, web3LoadingError, addEthereumAccounts, RegisterProperty, setupContract, EnablePropertySale, PropertyPricing, Events, BuyingRequest, OfferStatus } from './actions';
+import { setupWeb3, web3LoadingError, addEthereumAccounts,owners, Lands, RegisterProperty, setupContract, EnablePropertySale, BuyingRequest, OfferStatus } from './actions';
 import Web3 from 'web3';
 import SmartEstate from "../abis/SmartEstate.json";
 
 export const loadBlockchain = async (dispatch) => {
 
     try {
-        console.log("web3 =", Web3);
+        // console.log("web3 =", Web3);
         console.log("web3.givenProvider = ", Web3.givenProvider);
         if (Web3.givenProvider) {
             const web3 = new Web3(Web3.givenProvider);
             await Web3.givenProvider.enable();
             dispatch(setupWeb3(web3));
-            //       0xF10F322bf589b873B4C53bEef0ca644D32730b79
-            const address = "0x73f533F12d5e905F54bD58FFDC7f3512AEAe9b37"
+            //0x647ae2287D93846c64A994F6A3ca3d75dc9cb5d1
+            const address = '0x9FAc02E902449E2A3Ae5dAb36b87CF007b8b2BE9'
             const contract = new web3.eth.Contract(SmartEstate.abi, address)
             dispatch(setupContract(contract));
             console.log(contract)
             const accounts = await web3.eth.getAccounts();
             dispatch(addEthereumAccounts(accounts))
 
-            const events = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
+            const TokenId = await contract.methods.tokenId().call().then(function (result, error) {
+                if (result) {
+                    // console.log(result);
 
-            // console.log(events)
+                    for (let i = 1; i <= result; i++) {
+                        if (contract) {
+                            const land = contract.methods.AllPropertyList(i).call().then(function (data, error) {
+                                if (data) {
+                                    dispatch(Lands(data))
+                                      // console.log(data)
+                                } else if (error) {
+                                    console.log(error)
+                                }
+                            })
+                        }
+                    }
+                    let allData = []
+                    for (let i = 1; i <= result; i++) {
+                        if (contract) {
+                            const ownerList = contract.methods.ownerOf(i).call().then(function (data, error) {
+                                if (data) {
+                                    allData[i] = data
+                                      dispatch(owners(data))
+                                       
+                                       //console.log(data,allData)
+                                } else if (error) {
+                                    console.log(error)
+                                }
+                            })
+                        }
+                    }
+                } else if (error) {
+                    console.log(error)
+                }
+            })
+
+            const events = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
+            const TransferList = contract ? await contract.getPastEvents('Transfer', { fromBlock: 0, toBlock: "latest" }) : null
+            // dispatch(TransferEvent(TransferList))
+            // dispatch(TransferEvent(TransferList))
+            //console.log(TransferList)
+
+
+
         } else {
             dispatch(web3LoadingError("Please install an Ethereum-compatible browser or extension like Metamask to use this DAPP"))
         }
@@ -31,6 +72,36 @@ export const loadBlockchain = async (dispatch) => {
         if (error.code === 4001)
             dispatch(web3LoadingError(error.message))
     }
+}
+
+export const PropertyList = async (contract, accounts, Lands, dispatch) => {
+
+    console.log("before transaction")
+
+    const receipt = await contract.methods.tokenId().call({ from: accounts[0] }).then(function (result, error) {
+        if (result) {
+            // console.log(result);
+
+            for (let i = 1; i <= result; i++) {
+                const land = contract.methods.AllPropertyList(i).call()
+                .then(function (data, error) {
+                    if (data) {
+                        dispatch(Lands(data))
+                        console.log(data)
+                        return data
+                    } else if (error) {
+                        console.log(error)
+                    }
+                })
+                return land
+            }
+            return result
+        } else if (error) {
+            console.log(error)
+        }
+    })
+    console.log("after transaction", receipt)
+    return receipt
 }
 
 export const registerPropertyAsync = async (contract, accounts, property, dispatch) => {
@@ -48,18 +119,22 @@ export const enablePropertySale = async (contract, accounts, tokenId, dispatch) 
     dispatch(EnablePropertySale(tokenId))
 }
 
-export const propertyPricing = async (contract, accounts, PropertyId_TokenId, dispatch) => {
-    console.log("before transaction");
-    const receipt = await contract.methods.PropertyPricing(PropertyId_TokenId).send({ from: accounts[0] })
-    console.log("after trasnaction", receipt);
-    dispatch(PropertyPricing(PropertyId_TokenId));
-}
 
 export const property_Detail = async (contract) => {
 
-   // console.log("before transaction");
+    // console.log("before transaction");
     const receipt = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
-   // console.log("after transaction");
+    console.log("after transaction");
+    return receipt;
+}
+
+export const transfer_Info = (contract) => {
+
+    const receipt = contract ? contract.getPastEvents('Transfer', { fromBlock: 0, toBlock: "latest" }) : null
+    //  dispatch(TransferEvent(receipt))
+    console.log("after transaction", receipt);
+
+    // console.log("before transaction");
 
     return receipt;
 }

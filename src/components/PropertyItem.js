@@ -4,10 +4,8 @@ import { useStore } from '../context/GlobalState'
 import { property_Detail } from "../store/asyncActions";
 import { useParams } from 'react-router-dom'
 import Web3 from 'web3'
-//import BuyerRequest from './BuyerRequest';
-import  OfferStatus  from './OfferStatus';
 import { Buyer } from './Buyer';
-import BuyerRequest from './BuyerRequest';
+import { NewOwner } from './NewOwner';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,29 +42,30 @@ function PropertyItem() {
             getProperty()
         }
         getData();
-    }, [])
+    }, [accounts,contract])
 
-    const getProperty =async()=>{
+    const getProperty = async () => {
         const response = await property_Detail(contract)
         setEvents(response)
     }
 
     let returnValues = []
     const alldata = () => {
-        if(events){
+        if (events) {
             (events).map((item, index) => {
                 return returnValues[index] = item.returnValues
             })
             return returnValues
-        }else{
-           return getProperty()
+        } else {
+            return getProperty()
         }
     }
     returnValues = alldata()
     const val = id - 1;
     let dataItem = []
     dataItem = returnValues[val]
-
+      console.log(dataItem)
+    //console.log(typeof(events),events)
     const data = () => {
 
         if (dataItem) {
@@ -76,8 +75,9 @@ function PropertyItem() {
                     const useraddress = dataItem[0]
                     const tokenId = dataItem[1]
                     const address = dataItem[2]
-                    return <div className="property-list"> <div keys={id}>
+                    return <div> <div keys={id}>
                         <br />
+
                         <h3><b>Owner Address:</b> {useraddress}</h3>
                         <br />
                         <img src={`https://ipfs.infura.io/ipfs/${dataItem[8]}`} width="680px" />
@@ -90,8 +90,8 @@ function PropertyItem() {
                         <h3>Price: {Web3.utils.fromWei(dataItem[7].toString(), 'Ether')} Eth</h3>
 
                     </div>
-                    {dataItem[0] === accounts[0] ? <OfferStatus PropertyId_TokenId={dataItem[1]} /> : <Buyer PropertyId_TokenId={dataItem[1]} OwnerAddress={dataItem[0]}   />  }
-                 
+                        {dataItem[0] === accounts[0] ? <NewOwner PropertyId_TokenId={dataItem[1]} /> : <Buyer PropertyId_TokenId={dataItem[1]} OwnerAddress={dataItem[0]} />}
+                        {/* <OfferStatus PropertyId_TokenId={dataItem[1]} /> */}
                     </div>
                 } catch (error) {
                     console.log(error);

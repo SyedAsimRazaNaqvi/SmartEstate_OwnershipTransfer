@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Web3 from 'web3'
 import Loader from '../images/loader.gif'
-import './App.css'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,13 +30,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const PropertyList = () => {
+function NonCommercial() {
     const [events, setEvents] = useState([{}]);
-    const [myData, setmyData] = useState([])
     const [{ contract, accounts }, dispatch] = useStore();
     const [isTransactionInProcess, setTransactionInProcess] = useState(false)
     const [isTransactionSuccessful, setTransactionSuccessful] = useState(true)
     const [transactionError, setTransactionError] = useState("")
+    const [myData, setmyData] = useState([])
 
     useEffect(() => {
         async function getData() {
@@ -79,7 +79,6 @@ export const PropertyList = () => {
             }
         )();
     }, [events])
-    console.log(myData)
     const classes = useStyles();
     return (
         <>
@@ -90,24 +89,26 @@ export const PropertyList = () => {
                     <Grid container spacing={3}>
                         {(myData).map((item) => {
                             for (var a in item) {
-                                var id = item[1]
-                                return (
-                                    <div className="ProductItem">
-                                        <Link keys={id} to={`/property/${id}`} >
-                                            <div className="center">
-                                                <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px" maxWidth="100%" /></div>
-                                            <Paper className={classes.paper} elevation={3} >
-                                                <div >
-                                                    <h6>Property Address: {item[2]}</h6>
-                                                    <h6>City: {item[3]}</h6>
-                                                    <h6>Area: {item[5]}</h6>
-                                                    <h6>Property Type: {item[6]}</h6>
-                                                    <h6>Price: {Web3.utils.fromWei(item[7].toString(), 'Ether')} Eth</h6>
-                                                </div>
-                                            </Paper>
-                                        </Link>
-                                    </div>
-                                )
+                                if (item[6] === "Residential") {
+                                    var id = item[1]
+                                    return (
+                                        <div className="ProductItem">
+                                            <Link keys={id} to={`/property/${id}`} >
+                                                <div className="center">
+                                                    <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px" maxWidth="100%" /></div>
+                                                <Paper className={classes.paper} elevation={3} >
+                                                    <div >
+                                                        <h6>Property Address: {item[2]}</h6>
+                                                        <h6>City: {item[3]}</h6>
+                                                        <h6>Area: {item[5]}</h6>
+                                                        <h6>Property Type: {item[6]}</h6>
+                                                        <h6>Price: {Web3.utils.fromWei(item[7].toString(), 'Ether')} Eth</h6>
+                                                    </div>
+                                                </Paper>
+                                            </Link>
+                                        </div>
+                                    )
+                                }
                             }
                         })
                         }
@@ -117,3 +118,4 @@ export const PropertyList = () => {
         </>
     )
 }
+export default NonCommercial;
