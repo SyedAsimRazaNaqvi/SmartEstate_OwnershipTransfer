@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css"
+
 import { GlobalProvider } from "../context/GlobalState";
 
 
 import Routes from '../Routes/Route'
-import Footer from "./Footer";
 
 function App() {
 
@@ -12,7 +12,7 @@ function App() {
     <GlobalProvider>
      
       <div>
-      <Routes/>
+      <Routes/>  
       </div>
 
     </GlobalProvider>

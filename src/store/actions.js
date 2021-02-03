@@ -5,20 +5,6 @@ export const RegisterProperty = (property) => {
     }
 }
 
-export const TransferEvent = (events) => {
-    return {
-        type: 'TRANSFER_EVENT',
-        payload: events
-    }
-}
-
-export const Lands = (land) => {
-    return {
-        type: 'LANDS',
-        payload: land
-    }
-}
-
 export const OfferStatus = (PropertyId_TokenId) => {
     return {
         type: 'OFFER_STATUS',
@@ -47,10 +33,10 @@ export const EnablePropertySale = (tokenId) => {
     }
 }
 
-export const owners =(ownerList) =>{
+export const PropertyPricing = (PropertyId_TokenId) => {
     return {
-        type:'OWNER_LIST',
-        payload: ownerList
+        type: 'PROPERTY_PRICING',
+        payload: PropertyId_TokenId
     }
 }
 

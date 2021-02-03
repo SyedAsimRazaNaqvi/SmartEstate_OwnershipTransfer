@@ -8,8 +8,8 @@ const initialState ={
     accounts:[],
     contract:null,
     web3LoadingErrorMessage:"",
-    web3Loadded:false,
-    ownerList: []
+    web3Loadded:false
+    
 }
 
 export const GlobalContext = createContext(initialState)

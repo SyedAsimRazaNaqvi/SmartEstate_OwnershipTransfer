@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useStore } from '../context/GlobalState';
 import BuyerRequest from './BuyerRequest';
-import { SaleStatus } from './SaleStatus';
-import Loader from '../images/loader.gif'
+import { BuyProperty } from './BuyProperty';
+// import Buyproperty from './BuyProperty';
+// import BuyerRequest from './BuyerRequest'
+
 
 export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
 
@@ -11,8 +13,11 @@ export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
     const [isTransactionSuccessful, setTransactionSuccessful] = useState(true)
     const [transactionError, setTransactionError] = useState("")
 
+    // const [response, setResponse] = useState([])
     const [Data, setData] = useState([])
-    const getOffers = async () => await contract.methods.PropertyBuyerList(PropertyId_TokenId,accounts[0]).call().then(function (result, error) {
+    // console.log(typeof(BuyerAddress), PropertyId_TokenId)
+    // const BuyerAddress = accounts[0]
+    const getOffers = async () => await contract.methods.BuyerList(accounts[0]).call().then(function (result, error) {
         if (result) {
             setData({ Data: result })
         } else if (error) {
@@ -22,7 +27,7 @@ export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
             setTransactionError(error.message)
         }
     })
-    console.log(Data)
+
     useEffect(() => {
         getOffers();
     }, [])
@@ -30,25 +35,25 @@ export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
     let states = []
     const getResponse = () => {
         Object.values(Data).map((item, index) => {
+
+            console.log(typeof (item), item)
             for (var a in item) {
                 states = item
                 return item[a]
             }
         })
     }
+
     const r = getResponse()
-    const responseStatus = states[3]
-    const responsetoken = states.ApplyForToken
+    const response = states[3]
     const val = states[2]
     const BuyerAddress =states[1]
-    var Id = parseInt(PropertyId_TokenId-1);
-    var b = parseInt(responsetoken-1);
+    console.log(response,val)
+
     return (
         <>
-         <h3>{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
-            {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
             {
-            accounts[0] != OwnerAddress &&  responsetoken != PropertyId_TokenId  ?  <BuyerRequest PropertyId_TokenId={PropertyId_TokenId} OwnerAddress={OwnerAddress} /> :<SaleStatus winStatus={states[5]}  accounts={accounts[0]} responsetoken={b} val={val} responseStatus={responseStatus} Id={Id} OwnerAddress={OwnerAddress} PropertyId_TokenId={PropertyId_TokenId} BuyerAddress={BuyerAddress} />
+                response == "1" ? <BuyProperty PropertyId_TokenId={PropertyId_TokenId} val={val} OwnerAddress={OwnerAddress} /> : <BuyerRequest PropertyId_TokenId={PropertyId_TokenId} />
             }
         </>
     )

@@ -1,64 +1,60 @@
 import React from 'react'
 import { FaBars } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import {
-    Nav,
-    NavbarContainer,
-    NavLogo,
-    MobileIcon,
-    NavMenu,
-    NavItem,
-    NavLink,
-    NavBtn,
+import { Nav, 
+    NavbarContainer, 
+    NavLogo, 
+    MobileIcon, 
+    NavMenu, 
+    NavItem, 
+    NavLinks, 
+    NavBtn, 
     NavBtnLink
-} from "./NavbarElemets";
+ } from "./NavbarElemets";
 
 
 const Navbar = ({ toggle }) => {
     return (
-        <>
-            <Nav>
-                <NavbarContainer>
+    <>
+        <Nav>
+            <NavbarContainer>
 
-                    <NavLogo to="/">Smart Estate</NavLogo>
+                <NavLogo className="logo" to="/">Smart Estate</NavLogo>
+        
 
+                <MobileIcon onClick={ toggle }>
+                    <FaBars />
+                </MobileIcon>
+               
+                <NavMenu> 
+               
+                    <NavItem >
+                       <div className="navitem"> <Link className="link" to="propertyList">Property List</Link></div>
+                    </NavItem>
 
-                    <MobileIcon onClick={toggle}>
-                        <FaBars />
-                    </MobileIcon>
+                    <NavItem>
+                    <div className="navitem"> <Link className="link" to="commercial">Commercial</Link></div>
+                    </NavItem>
+                    
+                      <NavItem>
+                      <div className="navitem"> <Link className="link" to="noncommercial"> Non-Commercial </Link> </div>
+                    </NavItem>
+                
+                    <NavItem>
+                    <div className="navitem">  <Link className="link" to="About">About</Link></div>
+                    </NavItem>
+                {/* <NavItem>
+                <div className="navitem"> <Link to='/RegisterProperty'> Register Property </Link></div>
+                </NavItem> */}
 
-                    <NavMenu>
+            <NavBtn>
+                <Link className="Btn" to='/RegisterProperty'> Register Property </Link>
+            </NavBtn>
 
-                        <NavLink >
-                            <div className="navitem"> <Link to="/">Home</Link></div>
-                        </NavLink>
-                        <NavLink>
-                            <div className="navitem">  <Link to="About">About</Link></div>
-                        </NavLink>
-                        <NavLink >
-                            <div className="navitem"> <Link to="propertyList">Property List</Link></div>
-                        </NavLink>
-
-                        <NavLink>
-                            <div className="navitem"> <Link to="commercial">Commercial</Link></div>
-                        </NavLink>
-
-                        <NavLink>
-                            <div className="navitem"> <Link to="noncommercial"> Non-Commercial </Link> </div>
-                        </NavLink>
-
-                        <NavLink>
-                            <div className="navitem"> <Link to='/RegisterProperty'> Register Property </Link></div>
-                        </NavLink>
-
-                        {/* <NavBtn>
-                <Link to='/RegisterProperty'> Register Property </Link>
-            </NavBtn> */}
-
-                    </NavMenu>
-                </NavbarContainer>
-            </Nav>
-        </>
+                </NavMenu>
+            </NavbarContainer>
+        </Nav>         
+     </>
     )
 };
 

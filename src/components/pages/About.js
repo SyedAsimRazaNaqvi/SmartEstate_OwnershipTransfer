@@ -1,15 +1,15 @@
 import React from 'react';
+// import OfferStatus from '../OfferStatus';
 
-import SoldOutList from '../SoldOutList';
+
 function About() {
     return (
-      <div >
+      <div className="heading">
         <h1>Welcome to About page</h1> 
-       {/* <NewOwner PropertyId_TokenId={2} /> */}
-       <SoldOutList />
+         
+       
       </div>
     );
   }
   
   export default About;
-  

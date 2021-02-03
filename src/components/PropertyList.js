@@ -6,8 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Web3 from 'web3'
-import Loader from '../images/loader.gif'
-import './App.css'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,82 +30,60 @@ const useStyles = makeStyles((theme) => ({
 
 export const PropertyList = () => {
     const [events, setEvents] = useState([{}]);
-    const [myData, setmyData] = useState([])
     const [{ contract, accounts }, dispatch] = useStore();
-    const [isTransactionInProcess, setTransactionInProcess] = useState(false)
-    const [isTransactionSuccessful, setTransactionSuccessful] = useState(true)
-    const [transactionError, setTransactionError] = useState("")
 
     useEffect(() => {
         async function getData() {
             const response = await property_Detail(contract)
-            setEvents(response)
+        setEvents(response)
         }
         getData();
+    }, [])
 
+    const getProperties = async() =>{
+        const response = await property_Detail(contract)
+        setEvents(response)
+    }
 
-    }, [contract])
-
-    useEffect(() => {
-        const getProperties = async () => {
-            const response = await property_Detail(contract)
-            setEvents(response)
-            return response;
+    let returnValues = []
+    const alldata = () => {
+        if(events){
+        (events).map((item, index) => {
+            return returnValues[index] = item.returnValues
+        })
+        return returnValues}
+        else{
+            return getProperties()
         }
-        let returnValues = []
-        const alldata = async () => {
-            //console.log(events)
-            if (events) {
-                (events).map((item, index) => {
-                    return returnValues[index] = item.returnValues
-                })
-                // console.log(events,returnValues)
-                return returnValues
-            }
-            else {
-                console.log("CALL AGAIN")
-                return await getProperties()
-            }
-        }
-        (
-            async () => {
-                //  console.log(returnValues)
-                returnValues = await alldata()
-                // console.log(returnValues)
-                let reverseSort = returnValues ? returnValues.reverse() : []
-                setmyData(reverseSort)
-            }
-        )();
-    }, [events])
-    console.log(myData)
+    }
     const classes = useStyles();
+
+    returnValues = alldata()
+    let reverseSort = returnValues.reverse()
     return (
         <>
-            <h3>{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
-            {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
             <div className="Products">
                 <div className={classes.root}>
                     <Grid container spacing={3}>
-                        {(myData).map((item) => {
+                        {(reverseSort||returnValues).map(item => {
                             for (var a in item) {
                                 var id = item[1]
-                                return (
-                                    <div className="ProductItem">
-                                        <Link keys={id} to={`/property/${id}`} >
-                                            <div className="center">
-                                                <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px" maxWidth="100%" /></div>
-                                            <Paper className={classes.paper} elevation={3} >
-                                                <div >
-                                                    <h6>Property Address: {item[2]}</h6>
-                                                    <h6>City: {item[3]}</h6>
-                                                    <h6>Area: {item[5]}</h6>
-                                                    <h6>Property Type: {item[6]}</h6>
-                                                    <h6>Price: {Web3.utils.fromWei(item[7].toString(), 'Ether')} Eth</h6>
-                                                </div>
-                                            </Paper>
+                                return <Grid item s={12} sm={4} key={id}>
+                                    <Paper
+                                        className={classes.paper}
+                                        elevation={3}>
+                                        <Link keys={id} to={`/property/${id}`} className="eachItem" >
+                                            <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="250px" />
+                                            <h5 >Property ID: {id}</h5>
+                                            <h5 >Property Address: {item[2]}</h5>
+                                            <h5 >City: {item[3]}</h5>
+                                            {/* <h5>Room: {item[4]}</h5>
+                                            <h5 >Area: {item[5]}</h5> */}
+                                            <h5 >Property Type: {item[6]}</h5>
+                                            <h5 >Price: {Web3.utils.fromWei(item[7].toString(), 'Ether')} Eth</h5>
                                         </Link>
-                                    </div>
-                                )
+                                    </Paper>
+                                </Grid>
                             }
                         })
                         }

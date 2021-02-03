@@ -5,8 +5,9 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract SmartEstate is ERC721 {
    uint256 private buyerId;
-    uint256 public tokenId;
-   // uint256 public sellerAddress;
+    uint256 private tokenId;
+    event Transfer(address,address,address);
+    event property_Pricing(uint256);
     enum offerApproval {pending, approved, rejected}
     event saleStatus(bool);
 
@@ -39,13 +40,8 @@ contract SmartEstate is ERC721 {
         address buyerAddress;
         uint256 buyerOffer;
         offerApproval request;
-        uint256 ApplyForToken;
     }
-
-    event buyer_Info(uint256 buyerId,
-    address buyerAddress,
-    uint256 buyerOffer,offerApproval request,
-    uint256 PropertyId_TokenId);
+    event buyer_Info(uint256 buyerId,address buyerAddress,uint256 buyerOffer,offerApproval request);
     
     modifier propertyOwner() {
         require(
@@ -54,17 +50,12 @@ contract SmartEstate is ERC721 {
         );
         _;
     }
-    mapping(uint256 => PropertyDetails) public AllPropertyList;
 
     mapping(address => PropertyDetails) public OnlyOwner;
     mapping(uint256 => address) public PropertyList;
-
-   // mapping(address => BuyerInfo) public BuyerList;
+    mapping(address => BuyerInfo) public BuyerList;
     mapping(uint256 => BuyerInfo[]) public AllBuyers;
     mapping(uint256 => bool) public Offers;
-
-    // mapping(uint256 => BuyerInfo) public PropertyBuyerList;
-    mapping(uint256 => mapping(address => BuyerInfo)) public PropertyBuyerList;
 
     constructor() public ERC721("Smart Estate Properties", "ESP") {}
 
@@ -96,18 +87,11 @@ contract SmartEstate is ERC721 {
             propertyType: _propertyType,
             price: _priceInEther,
             image: _image,
-            saleStatus: true
+            saleStatus: _saleStatus
         });
         OnlyOwner[msg.sender] = tempDetails;
         PropertyList[thisId] = msg.sender;
-        AllPropertyList[thisId] = tempDetails;
-        emit property_detail( msg.sender,
-            thisId,
-            _propertyAddress,
-            _city,_room, _area,
-            _propertyType,
-            _priceInEther,
-            _image,_saleStatus);
+        emit property_detail( msg.sender, thisId, _propertyAddress, _city,_room, _area, _propertyType, _priceInEther, _image,false);
         return true;
     }
 
@@ -158,15 +142,12 @@ contract SmartEstate is ERC721 {
             bId: buyerId,
             buyerAddress: msg.sender,
             buyerOffer: offerInEthers,
-            request: offerApproval.pending,
-            ApplyForToken: PropertyId_TokenId
+            request: offerApproval.pending
         });
         AllBuyers[PropertyId_TokenId].push(tempDetails);
-       // BuyerList[msg.sender] = tempDetails;
-        PropertyBuyerList[PropertyId_TokenId][msg.sender] = tempDetails;
-        PropertyBuyerList[PropertyId_TokenId][msg.sender].request = offerApproval.pending;
-       // BuyerList[msg.sender].request = offerApproval.pending;
-        emit buyer_Info(buyerId, msg.sender,offerInEthers,offerApproval.pending,PropertyId_TokenId);
+        BuyerList[msg.sender] = tempDetails;
+        BuyerList[msg.sender].request = offerApproval.pending;
+        emit buyer_Info(buyerId, msg.sender,offerInEthers,offerApproval.pending);
         return true;
     }
 
@@ -194,12 +175,10 @@ contract SmartEstate is ERC721 {
             "Error: INVALID Property id or token id"
         );
         require(
-          //  BuyerList[_buyerAddress].buyerAddress == _buyerAddress,
-             PropertyBuyerList[PropertyId_TokenId][_buyerAddress].buyerAddress == _buyerAddress,
+            BuyerList[_buyerAddress].buyerAddress == _buyerAddress,
             "Error: INVALID buyer address "
         );
-       // BuyerList[_buyerAddress].request = offerApproval.rejected;
-        PropertyBuyerList[PropertyId_TokenId][_buyerAddress].request = offerApproval.rejected;
+        BuyerList[_buyerAddress].request = offerApproval.rejected;
         return true;
     }
 
@@ -213,12 +192,10 @@ contract SmartEstate is ERC721 {
             "Error: INVALID Property id or token id"
         );
         require(
-          //  BuyerList[_buyerAddress].buyerAddress == _buyerAddress,
-           PropertyBuyerList[PropertyId_TokenId][_buyerAddress].buyerAddress == _buyerAddress,
+            BuyerList[_buyerAddress].buyerAddress == _buyerAddress,
             "Error: INVALID buyer address "
         );
-       // BuyerList[_buyerAddress].request = offerApproval.approved;
-        PropertyBuyerList[PropertyId_TokenId][_buyerAddress].request = offerApproval.approved;
+        BuyerList[_buyerAddress].request = offerApproval.approved;
         return true;
     }
 
@@ -232,30 +209,26 @@ contract SmartEstate is ERC721 {
             "Error: INVALID Property id or token id"
         );
         require(
-           // BuyerList[msg.sender].buyerAddress == msg.sender,
-            PropertyBuyerList[PropertyId_TokenId][msg.sender].buyerAddress == msg.sender,
+            BuyerList[msg.sender].buyerAddress == msg.sender,
             "Error: INVALID buyer address "
         );
         require(
-           // BuyerList[msg.sender].request == offerApproval.approved,
-            PropertyBuyerList[PropertyId_TokenId][msg.sender].request == offerApproval.approved,
+            BuyerList[msg.sender].request == offerApproval.approved,
             "Error: This Property not for sale (Offer request not approved)"
         );
         require(msg.value > 0, "Error: Ether(s) not provided ");
-        // uint256 PropertyPrice = BuyerList[msg.sender].buyerOffer.mul(
-        //     1 * 10**18
-        // );
-        uint256 PropertyPrice = PropertyBuyerList[PropertyId_TokenId][msg.sender].buyerOffer.mul(
+        uint256 PropertyPrice = BuyerList[msg.sender].buyerOffer.mul(
             1 * 10**18
         );
         require(
             PropertyPrice == msg.value,
             "Error: Sorry, Pricing of property not matched with offer"
         );
-        address BuyerAddress = OnlyOwner[PropertyList[PropertyId_TokenId]].sellerAddress;
-         _transfer(BuyerAddress, msg.sender, PropertyId_TokenId);
-         OnlyOwner[PropertyList[PropertyId_TokenId]].saleStatus = false;
-        //  OnlyOwner[PropertyList[PropertyId_TokenId]].sold = true;
+        address BuyerAddress = OnlyOwner[PropertyList[PropertyId_TokenId]]
+            .sellerAddress;
+        _transfer(BuyerAddress, msg.sender, PropertyId_TokenId);
+        emit Transfer(BuyerAddress, msg.sender, PropertyId_TokenId);
         return true;
+        
     }
 }
