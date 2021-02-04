@@ -26,6 +26,51 @@ h3, image{
   border: 1px solid black;
 }
 
+.logo:hover{
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+
+.link{
+  color: #fff !important;
+  text-decoration: none !important;
+  }
+  
+  .link:hover{
+    color: #fff;
+  }
+  
+
+  .Btn{
+    border-radius: 50px ;
+      background: #01bf71;
+      white-space: nowrap;
+      padding: 10px 22px;
+      color: #010606;
+      font-size: 16px;
+      outline: none;
+      border: none;
+      margin-top: 15px;;
+      cursor: pointer;
+      transition: all 0.2 ease-in-out;
+      text-decoration: none;
+    display: flex;
+  align-items: center;
+  
+  
+  @media screen and (max-width: 768px) {
+      display: none;
+  }
+  } 
+  .Btn:hover{
+    transition: all 0.2s ease-in-out;
+          white-space: nowrap;
+          outline: none;
+          background: #fff !important;
+          color: #010606;
+  }
+
 .navContainer{
     margin:0 10px;
     color: black;
@@ -105,7 +150,28 @@ padding-top: 18px;
   color: white;
 }
 
-.App-link {
+
+.navitem{
+  color: #fff ;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1rem;
+    outline: none;
+    margin-top: 8px;
+    margin-right: 32px;
+    justify-content: center;
+    justify-self: flex-start;
+    height: 80px;
+    cursor: pointer;   
+}
+.card{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+/* .App-link {
   color: #61dafb;
 }
 
@@ -116,4 +182,4 @@ padding-top: 18px;
   to {
     transform: rotate(360deg);
   }
-}
+} */

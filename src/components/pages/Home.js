@@ -1,14 +1,22 @@
-import React from 'react'
-import SoldOutList from '../SoldOutList'
-import TransferInfo from '../TransferInfo'
+import React from 'react';
+import Grid from '../Grid'; //Services
+import HeroSection from '../HeroSection';
+import InfoSection from '../InfoSection';
+import { homeObjOne, homeObjThree, homeObjTwo } from '../InfoSection/Data';
 
-function Home() {
-  return (
-    <div >
-      <h1>Welcome to Home page</h1>
 
-    </div>
-  );
-}
+const Home = () => {
+    return (
+        <>
+            <HeroSection />
+            <InfoSection {...homeObjOne} />
+            <InfoSection {...homeObjTwo} />
+            <Grid />
+            <InfoSection {...homeObjThree} />
+
+
+        </>
+    );
+};
 
 export default Home;

@@ -15,7 +15,7 @@ function OfferStatus({ PropertyId_TokenId }) {
     const [transactionError, setTransactionError] = useState("")
     useEffect(() => {
         getOffers();
-    }, [])
+    }, [contract,accounts,PropertyId_TokenId])
 
     const getOffers = async () => await contract.methods.OfferStatus(PropertyId_TokenId).call({
         from: accounts[0]
@@ -31,7 +31,6 @@ function OfferStatus({ PropertyId_TokenId }) {
     })
 
     return (<>
-        <EnablePropertySale PropertyId_TokenId={PropertyId_TokenId} />
         {Data != null || undefined ? <div>
             <br />
             <table className="bids" style={{ width: 100 }} >

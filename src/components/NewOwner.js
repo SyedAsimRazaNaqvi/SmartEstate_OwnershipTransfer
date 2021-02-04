@@ -27,14 +27,12 @@ export const NewOwner = ({PropertyId_TokenId}) => {
     }
 console.log(Data,PropertyId_TokenId)
 
-   // console.log(PropertyId_TokenId,responseStatus,OwnerAddress,BuyerAddress,typeof(PropertyId_TokenId),typeof(responseStatus),typeof(OwnerAddress),typeof(BuyerAddress))
+   
     return (
         <div>
             {/* <OfferStatus /> */}
             {Data == accounts ? <OfferStatus PropertyId_TokenId={PropertyId_TokenId} /> : <h3>Sold Out</h3> }
-            {/* {
-                BuyerAddress === Data   ? <h3>My Property: {Data} val :{val}</h3> : <BuyProperty responseStatus={responseStatus} PropertyId_TokenId={PropertyId_TokenId} OwnerAddress={OwnerAddress} BuyerAddress={BuyerAddress} val={val} />
-            } */}
+            
         </div>
     )
 }

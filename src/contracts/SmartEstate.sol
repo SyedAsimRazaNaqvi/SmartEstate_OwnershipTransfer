@@ -107,7 +107,8 @@ contract SmartEstate is ERC721 {
             _city,_room, _area,
             _propertyType,
             _priceInEther,
-            _image,_saleStatus);
+            _image,
+            true);
         return true;
     }
 

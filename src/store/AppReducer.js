@@ -27,7 +27,7 @@ export default (state, action) => {
         case 'TRANSFER_EVENT': {
             return {
                 ...state,
-                events: action.payload
+                OwnershipsEvents: action.payload
             }
         }
 

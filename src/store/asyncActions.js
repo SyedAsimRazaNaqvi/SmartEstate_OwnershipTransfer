@@ -1,4 +1,4 @@
-import { setupWeb3, web3LoadingError, addEthereumAccounts,owners, Lands, RegisterProperty, setupContract, EnablePropertySale, BuyingRequest, OfferStatus } from './actions';
+import { setupWeb3, web3LoadingError, addEthereumAccounts,owners, Lands,TransferEvent, RegisterProperty, setupContract, EnablePropertySale, BuyingRequest, OfferStatus } from './actions';
 import Web3 from 'web3';
 import SmartEstate from "../abis/SmartEstate.json";
 
@@ -11,8 +11,7 @@ export const loadBlockchain = async (dispatch) => {
             const web3 = new Web3(Web3.givenProvider);
             await Web3.givenProvider.enable();
             dispatch(setupWeb3(web3));
-            //0x647ae2287D93846c64A994F6A3ca3d75dc9cb5d1
-            const address = '0xDC95F56B5577de26E33B9E84Ed0Ec1e0D6742E61'
+            const address = '0x0F11f326ef02b176652ad70d375e4094353F4210'
             const contract = new web3.eth.Contract(SmartEstate.abi, address)
             dispatch(setupContract(contract));
             console.log(contract)
@@ -55,11 +54,19 @@ export const loadBlockchain = async (dispatch) => {
                 }
             })
 
-            const events = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
-            const TransferList = contract ? await contract.getPastEvents('Transfer', { fromBlock: 0, toBlock: "latest" }) : null
-            // dispatch(TransferEvent(TransferList))
-            // dispatch(TransferEvent(TransferList))
-            //console.log(TransferList)
+            const eventsList =  await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" });
+          
+            let OwnershipsTransferList= []
+            const TransferList =  await contract.getPastEvents('Transfer', { fromBlock: 0, toBlock: "latest" },(errors,events)=>{
+                if(!errors){
+                    OwnershipsTransferList = events;
+                    OwnershipsTransferList.map((item,index)=>{
+                        OwnershipsTransferList[index] = item.returnValues;
+                    })
+                }
+            }); 
+            
+             dispatch(TransferEvent(TransferList))
 
 
 

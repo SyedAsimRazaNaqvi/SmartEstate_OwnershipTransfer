@@ -5,10 +5,10 @@ export const RegisterProperty = (property) => {
     }
 }
 
-export const TransferEvent = (events) => {
+export const TransferEvent = (OwnershipsEvents) => {
     return {
         type: 'TRANSFER_EVENT',
-        payload: events
+        payload: OwnershipsEvents
     }
 }
 
