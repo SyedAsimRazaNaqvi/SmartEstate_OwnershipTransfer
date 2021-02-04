@@ -93,9 +93,9 @@ export const PropertyList = () => {
                                 var id = item[1]
                                 return (
                                     <div className="ProductItem">
-                                        <Link keys={id} to={`/property/${id}`} >
+                                        <Link className="link" keys={id} to={`/property/${id}`} >
                                             <div className="center">
-                                                <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px" maxWidth="100%" /></div>
+                                                <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px" height="320px" maxWidth="100%" /></div>
                                             <Paper className={classes.paper} elevation={3} >
                                                 <div >
                                                     <h6>Property Address: {item[2]}</h6>
