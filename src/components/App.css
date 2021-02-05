@@ -41,10 +41,46 @@ h3, image{
     color: #fff;
   }
   
+.chooseImage{
+  background-color: #f9f9f9;
+    border: 0.5px solid;
+    border-color: #8888;
+    border-radius: 5px;
+}
 
+.contractBtn{
+  border-radius: 5px ;
+  background: #01bf71 !important;
+  white-space: nowrap;
+  padding: 10px 22px;
+  color: #010606;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  margin-top: 15px;;
+  cursor: pointer;
+  transition: all 0.2 ease-in-out;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+
+@media screen and (max-width: 768px) {
+  display: none;
+}
+}
+
+.contractBtn:hover{
+  transition: all 0.2s ease-in-out;
+        white-space: nowrap;
+        outline: none;
+        background:  #010606 !important;
+        color: #fff;
+}
   .Btn{
     border-radius: 50px ;
-      background: #01bf71;
+      background: #01bf71 !important;
       white-space: nowrap;
       padding: 10px 22px;
       color: #010606;

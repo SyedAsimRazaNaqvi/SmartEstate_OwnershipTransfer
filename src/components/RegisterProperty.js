@@ -101,7 +101,7 @@ export const RegisterProperty = () => {
 
         <>
             <EthAccountInfo />
-            <h3 className="h3">Add new Property{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
+            <h3 className="h3">Register Property{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
             {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
 
             <div className="card">
@@ -166,7 +166,7 @@ export const RegisterProperty = () => {
                     <TextField type="number" id="outlined-basic" label="Amount" value={_priceInEther} onChange={(e) => setpriceInEther(e.target.value)} variant="outlined" required />
 
                     <div style={{marginLeft:"auto",margin:"auto"}}>
-                        <input type="file" name="_image" onChange={(e) => {
+                        <input type="file" name="_image" className="chooseImage" onChange={(e) => {
                             e.preventDefault()
                             const file = e.target.files[0]
                             const reader = new window.FileReader()
@@ -181,11 +181,11 @@ export const RegisterProperty = () => {
 
 
 
-                    <TextField style={{ width: "102.25ch" }} type="textarea" id="outlined-basic" label="Additional Information" value={_tokenUri} onChange={(e) => settokenUri(e.target.value)} variant="outlined" required />
+                    <TextField style={{ width: "102.25ch" }} type="textarea" id="outlined-basic" label="Additional Information" value={_tokenUri} onChange={(e) => settokenUri(e.target.value)} variant="outlined" />
                     {
                         isTransactionInProcess ?
-                            <div className="btn" style={{ background: "blue", color: "white" }}> Transaction in Process...</div> :
-                            <div className="center"> <button className="btn" style={{ background: "blue", color: "white" }}> Register Property</button></div>
+                            <div className="contractBtn" style={{ background: "blue", color: "white" }}> Transaction in Process...</div> :
+                            <div className="center" style={{width:"100%"}}> <button className="contractBtn" style={{ background: "blue", color: "white" }}> Register Property</button></div>
                     }
                 </form>
             </div>

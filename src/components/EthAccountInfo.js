@@ -20,9 +20,9 @@ export const EthAccountInfo = () => {
         if (accounts && accounts[0]) {
             return (
                 <div className="center">
-                  <b>  <span>Address:</span><span>{accounts[0]}</span></b>
+                  <b>  <span>Current Address: </span><span>{accounts[0]}</span></b>
                     <br />
-                 <b>   <span>Balance:</span><span>{accountBalance} ethers</span></b>
+                 <b>   <span>Balance: </span><span>{accountBalance} ethers</span></b>
                 </div>
             );
         }
@@ -37,8 +37,8 @@ export const EthAccountInfo = () => {
     }
     return (
         <div className= "eth-account-info-container">
-            <div>Your Ethereum Account Details</div>
-            <hr/>
+            {/* <div>Your Ethereum Account Details</div> */}
+            
             {
                 accountDisplay()
             }

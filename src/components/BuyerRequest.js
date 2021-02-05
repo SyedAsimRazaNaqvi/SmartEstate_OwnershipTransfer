@@ -110,7 +110,7 @@ console.log(Data)
                    Data != OwnerAddress ? <h3>SoldOut</h3> : <div className="center">
                         <h3>Want to Bid?</h3>
                         <input type="text" required onChange={(e) => setvalue(e.target.value)} />
-                        <button className="btn" style={{ background: "blue", color: "white" }}> Buy Request</button></div>
+                        <button className="contractBtn" style={{ background: "blue", color: "white" }}> Buy Request</button></div>
                 }
             </div>
         </form>
