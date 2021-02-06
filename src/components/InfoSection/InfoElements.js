@@ -16,7 +16,10 @@ display: grid;
  max-width: 1100px;
  margin-right: auto;
  margin-left: auto;
- padding: 50px;
+ padding-top:40px;
+ padding-bottom:40px;
+ padding-left:auto;
+ padding-right:auto;
  justify-content: center;
 `
 

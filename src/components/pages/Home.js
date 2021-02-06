@@ -2,7 +2,8 @@ import React from 'react';
 import Grid from '../Grid'; //Services
 import HeroSection from '../HeroSection';
 import InfoSection from '../InfoSection';
-import { homeObjOne, homeObjThree, homeObjTwo } from '../InfoSection/Data';
+import { homeObjOne, homeObjThree, homeObjTwo,homeObjFour } from '../InfoSection/Data';
+import { OwnershipTransferList } from '../OwnershipTransferList';
 
 
 const Home = () => {
@@ -13,8 +14,7 @@ const Home = () => {
             <InfoSection {...homeObjTwo} />
             <Grid />
             <InfoSection {...homeObjThree} />
-
-
+            <OwnershipTransferList />
         </>
     );
 };

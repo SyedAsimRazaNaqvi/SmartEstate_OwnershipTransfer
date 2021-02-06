@@ -13,6 +13,8 @@ ImgWrap,
 Img,
 Img1 } from "./InfoElements";
 
+import {OwnershipTransferList} from '../OwnershipTransferList'
+
 const InfoSection = ({lightBg, 
     id, 
     imgStart, 
@@ -66,7 +68,6 @@ const InfoSection = ({lightBg,
                         <Img1 src={img1} alt={alt1} />
                       </ImgWrap>
                       </Column2>
-                      
                   </InfoRow>
               </InfoWrapper>
               </InfoContainer>  

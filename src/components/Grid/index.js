@@ -14,7 +14,7 @@ ServiceP
 const Grid = () => {
     return (
         <ServiceContainer id='services'>
-            <ServicesH1> Here is some of out listing </ServicesH1>
+            <ServicesH1> Pillars of Blockchain </ServicesH1>
             <ServicesWrapper>
                 
                 <ServicesCard>

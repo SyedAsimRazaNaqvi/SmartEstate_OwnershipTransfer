@@ -21,10 +21,25 @@ h3, image{
 }
 
 
-
-.bids >tr,td{
-  border: 1px solid black;
+.transferList {
+  height: 330px;
 }
+
+.listTable{ 
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+    
+}
+.listTable > th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+/* .bids >tr,td{
+  border: 1px solid black;
+} */
 
 .logo:hover{
   color: #fff !important;

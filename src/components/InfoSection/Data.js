@@ -49,3 +49,17 @@ export const homeObjThree = {
     primary: false,
     darkText: true
 }
+
+export const homeObjFour = {
+    id: 'TransferList',
+    lightBg: true,
+    lightText: false,
+    lightTextDesc: false,
+    topLine: 'What is ERC?',
+    headline: 'ERC stands for Ethereum Request Comments, ERC is the common standard of writing Token’s for the Ethereum environment. ERC defines the set of rules how to develop a contract. ',
+    description: 'We have used ERC721 token for our application, its non-fungible token, non-fungible are tokens which represents unique identity of property, ERC721 allows user to transfer ownership of one token to another user.',
+    alt: 'House',
+    dark: false,
+    primary: false,
+    darkText: true
+}
