@@ -24,6 +24,7 @@ const InfoSection = ({lightBg,
     description1, 
     description2, 
     description3, 
+    description4, 
     buttonLabel, 
     img, 
     img1, 
@@ -46,6 +47,7 @@ const InfoSection = ({lightBg,
                           <Subtitle darkText={darkText}> {description1}</Subtitle>
                           <Subtitle darkText={darkText}> {description2}</Subtitle>
                           <Subtitle darkText={darkText}> {description3}</Subtitle>
+                          <Subtitle className="ERC" darkText={darkText}> {description4}</Subtitle>
                           <BtnWrap>
                               {/* <Button to='home'
                               smooth= {true}

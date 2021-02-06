@@ -1,15 +1,16 @@
 import React from 'react';
 // import OfferStatus from '../OfferStatus';
+import DeveloperSection from '../About/DeveloperSection'
 
+import AboutSmartEstate from '../About/about-smartestate'
 
-function About() {
+const about = () => {
     return (
-      <div className="heading">
-        <h1>Welcome to About page</h1> 
-         
-       
-      </div>
+      <>
+      <AboutSmartEstate/>
+<DeveloperSection/>
+      </>
     );
   }
   
-  export default About;
+  export default about;

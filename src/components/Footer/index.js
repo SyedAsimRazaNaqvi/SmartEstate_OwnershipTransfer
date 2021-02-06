@@ -1,11 +1,20 @@
 import React from 'react'
+import icon1 from '../images/IU.png'
+import{FaFacebook, FaInstagram, FaYoutube, FaTwitter, FaLinkedin} from 'react-icons/fa'
 import { FooterContainer,
 FooterWrap,
 FooterLinksContainer,
 FooterLinksWrapper,
 FooterLinksItems,
 FooterLinkTitle,
-FooterLink 
+FooterLinkTitle1,
+FooterLink,
+SocialMedia,
+SocialMediaWrap,
+SocialLogo,
+WebsiteRights,
+SocialIcon,
+SocialIconLink 
 } from "./FooterElements";
 const Footer = () => {
     return (
@@ -15,21 +24,16 @@ const Footer = () => {
                    <FooterLinksContainer>
                        <FooterLinksWrapper>
                            <FooterLinksItems>
-                               <FooterLinkTitle> About Us </FooterLinkTitle>
-                                  <FooterLink to="/signin"> How it works </FooterLink>
-                                   <FooterLink to="/signin"> Testimonial </FooterLink>
-                                   <FooterLink to="/signin"> Careers </FooterLink>
-                                   <FooterLink to="/signin"> Investors </FooterLink>
-                                   <FooterLink to="/signin"> Terms of Service </FooterLink>
+                               <FooterLinkTitle> <img width="130px" src={icon1}/> </FooterLinkTitle>
                                </FooterLinksItems>
 
                            <FooterLinksItems>
-                           <FooterLinkTitle> About Us </FooterLinkTitle>
-                                  <FooterLink to="/signin"> How it works </FooterLink>
-                                   <FooterLink to="/signin"> Testimonial </FooterLink>
-                                   <FooterLink to="/signin"> Careers </FooterLink>
-                                   <FooterLink to="/signin"> Investors </FooterLink>
-                                   <FooterLink to="/signin"> Terms of Service </FooterLink>
+                           <FooterLinkTitle> Quick Links </FooterLinkTitle>
+                                  <FooterLink to=""> Home </FooterLink>
+                                   <FooterLink to="/about"> About </FooterLink>
+                                   <FooterLink to="/RegisterProperty"> Register Property </FooterLink>
+                                   <FooterLink to="/commercial"> Commercial </FooterLink>
+                                   <FooterLink to="/residential"> Residential </FooterLink>
                            </FooterLinksItems>
 
                        </FooterLinksWrapper>
@@ -37,24 +41,44 @@ const Footer = () => {
                        <FooterLinksWrapper>
                        <FooterLinksItems>
                            <FooterLinkTitle> About Us </FooterLinkTitle>
-                                   <FooterLink to="/signin"> How it works </FooterLink>
-                                   <FooterLink to="/signin"> Testimonial </FooterLink>
-                                   <FooterLink to="/signin"> Careers </FooterLink>
-                                   <FooterLink to="/signin"> Investors </FooterLink>
-                                   <FooterLink to="/signin"> Terms of Service </FooterLink>
+                                   <FooterLinkTitle1 to="/signin"> We are student of Iqra university. Our project name is Smart Estate which is based on blockchain development </FooterLinkTitle1>
                            </FooterLinksItems>
 
                            <FooterLinksItems>
-                           <FooterLinkTitle> About Us </FooterLinkTitle>
-                                  <FooterLink to="/signin"> How it works </FooterLink>
-                                   <FooterLink to="/signin"> Testimonial </FooterLink>
-                                   <FooterLink to="/signin"> Careers </FooterLink>
-                                   <FooterLink to="/signin"> Investors </FooterLink>
-                                   <FooterLink to="/signin"> Terms of Service </FooterLink>
+                           <FooterLinkTitle> Github  </FooterLinkTitle>
+                                 <a className="GHLink" href="https://github.com/syedasimrazanaqvi"> Asim Raza </a> 
+                                  <a className="GHLink" href="https://github.com/kumailnaqvi354"> Kumail Naqvi </a>
+                                  <a className="GHLink" href="https://github.com/Haseeb96Ahmed"> Haseeb Ahmed </a>
+                                  <a className="GHLink" href="https://github.com/sherryjee">Syed Muhammad Shaheryar</a>
                            </FooterLinksItems>
                            </FooterLinksWrapper>
 
                    </FooterLinksContainer>
+                    <SocialMedia>
+                        <SocialMediaWrap>
+                            {/* <SocialLogo to='/'>
+                                Smart Estate
+                            </SocialLogo> */}
+                            <WebsiteRights> Smart Estate © {new Date().getFullYear()} All rights reserved.</WebsiteRights>
+                            <SocialIcon>
+                                <SocialIconLink href='/' target="_blank" aria-label="Facebook">
+                                    <FaFacebook />
+                                </SocialIconLink>
+                                <SocialIconLink href='/' target="_blank" aria-label="Instagram">
+                                    <FaInstagram />
+                                </SocialIconLink>
+                                <SocialIconLink href='/' target="_blank" aria-label="Youtube">
+                                    <FaYoutube />
+                                </SocialIconLink>
+                                <SocialIconLink href='/' target="_blank" aria-label="Twitter">
+                                    <FaTwitter />
+                                </SocialIconLink>
+                                <SocialIconLink href='/' target="_blank" aria-label="LinkedIn">
+                                    <FaLinkedin />
+                                </SocialIconLink>
+                            </SocialIcon>
+                        </SocialMediaWrap>
+                    </SocialMedia>
                </FooterWrap>
                </FooterContainer> 
         </>
