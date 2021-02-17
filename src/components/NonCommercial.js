@@ -95,13 +95,13 @@ function NonCommercial() {
                                         <div className="ProductItem">
                                             <Link className="link" keys={id} to={`/property/${id}`} >
                                                 <div className="center">
-                                                    <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px" maxWidth="100%" /></div>
+                                                    <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px" height="320px" maxWidth="100%" /></div>
                                                 <Paper className={classes.paper} elevation={3} >
                                                     <div >
                                                         <h6>Property Address: {item[2]}</h6>
                                                         <h6>City: {item[3]}</h6>
-                                                        <h6>Area: {item[5]}</h6>
-                                                        <h6>Property Type: {item[6]}</h6>
+                                                        {/* <h6>Area: {item[5]}</h6>
+                                                        <h6>Property Type: {item[6]}</h6> */}
                                                         <h6>Price: {Web3.utils.fromWei(item[7].toString(), 'Ether')} Eth</h6>
                                                     </div>
                                                 </Paper>
@@ -115,6 +115,7 @@ function NonCommercial() {
                     </Grid>
                 </div>
             </div>
+            <br />
         </>
     )
 }

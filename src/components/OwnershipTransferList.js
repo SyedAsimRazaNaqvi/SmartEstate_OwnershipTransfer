@@ -21,7 +21,7 @@ const useStyles = makeStyles({
         textAlign: 'center',
         margin: 'auto',
         maxWidth: 1000,
-        boxShadow: "2px 0px 10px"
+        boxShadow: "2px 0px 10px",
     },
 
     table: {
@@ -34,10 +34,11 @@ const useStyles = makeStyles({
 export const OwnershipTransferList = () => {
     const classes = useStyles();
     const [{ contract, accounts, OwnershipsEvents }, dispatch] = useStore();
-    console.log(OwnershipsEvents)
+    //console.log(OwnershipsEvents)
 
     return (
         <div style={{backgroundColor:"#f9f9f9"}}>
+            <h3>List Of Ownership Transfer Using <b>Smart Estate</b></h3>
             <Card className={classes.root} >
                 <TableContainer style={{height:330}} component={Paper}>
                     <Table className={classes.table} aria-label="simple table">

@@ -11,13 +11,14 @@ export const loadBlockchain = async (dispatch) => {
             const web3 = new Web3(Web3.givenProvider);
             await Web3.givenProvider.enable();
             dispatch(setupWeb3(web3));
-            const address = '0x0F11f326ef02b176652ad70d375e4094353F4210'
+            const address = '0x9646EDC7B07825FDa0a63312f6d22D8dFcb9D237'
             const contract = new web3.eth.Contract(SmartEstate.abi, address)
             dispatch(setupContract(contract));
             console.log(contract)
             const accounts = await web3.eth.getAccounts();
             dispatch(addEthereumAccounts(accounts))
 
+            
             const TokenId = await contract.methods.tokenId().call().then(function (result, error) {
                 if (result) {
                     // console.log(result);
@@ -115,14 +116,14 @@ export const registerPropertyAsync = async (contract, accounts, property, dispat
     console.log("before transaction")
 
     const receipt = await contract.methods.RegisterProperty(property._propertyAddress, property._city, property._room, property._area, property._priceInEther, property._propertyType, property._image, property._saleStatus, property._tokenUri).send({ from: accounts[0] });
-    console.log("after transaction ", receipt)
+   // console.log("after transaction ", receipt)
     dispatch(RegisterProperty(property))
 }
 
 export const enablePropertySale = async (contract, accounts, tokenId, dispatch) => {
     console.log("before transaction")
     const receipt = await contract.methods.EnablePropertySale(tokenId).send({ from: accounts[0] })
-    console.log("after transaction ", receipt)
+   // console.log("after transaction ", receipt)
     dispatch(EnablePropertySale(tokenId))
 }
 
@@ -131,7 +132,7 @@ export const property_Detail = async (contract) => {
 
     // console.log("before transaction");
     const receipt = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
-    console.log("after transaction");
+   // console.log("after transaction");
     return receipt;
 }
 
@@ -139,7 +140,7 @@ export const transfer_Info = (contract) => {
 
     const receipt = contract ? contract.getPastEvents('Transfer', { fromBlock: 0, toBlock: "latest" }) : null
     //  dispatch(TransferEvent(receipt))
-    console.log("after transaction", receipt);
+   // console.log("after transaction", receipt);
 
     // console.log("before transaction");
 
@@ -150,7 +151,7 @@ export const buyer_Request = async (contract, accounts, offer, dispatch) => {
     console.log("before transaction")
 
     const receipt = await contract.methods.BuyingRequest(offer.PropertyId_TokenId, offer.value).send({ from: accounts[0] });
-    console.log("after transaction ", receipt)
+   // console.log("after transaction ", receipt)
     dispatch(BuyingRequest(offer))
 }
 
@@ -158,6 +159,6 @@ export const offerStatus = async (contract, PropertyId_TokenId, dispatch) => {
     console.log("before transaction")
     const receipt = await contract.methods.OfferStatus(PropertyId_TokenId).call()
 
-    console.log("after transaction ", receipt)
+   // console.log("after transaction ", receipt)
     dispatch(OfferStatus(PropertyId_TokenId))
 }

@@ -6,8 +6,6 @@ import {
     SidebarWrapper,
     SidebarMenu,
     SidebarLink,
-    SideBtnWrap,
-    SidebarRoute
 } from "./SidebarElements";
 import { Link } from 'react-router-dom';
 

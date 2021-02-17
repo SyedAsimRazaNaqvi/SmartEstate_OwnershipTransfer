@@ -3,6 +3,7 @@ import Web3 from 'web3'
 import { useStore } from '../context/GlobalState'
 import { buyer_Request, transfer_Info } from '../store/asyncActions';
 import Loader from '../images/loader.gif'
+import Typography from '@material-ui/core/Typography';
 
 function BuyerRequest({ PropertyId_TokenId, OwnerAddress }) {
 
@@ -71,10 +72,9 @@ function BuyerRequest({ PropertyId_TokenId, OwnerAddress }) {
             }	
         }	
     }	
-    const runFunc = data()	
-    console.log(runFunc, status)	
-
-
+   // const runFunc = data()	
+   data();
+   // console.log(runFunc, status)	
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -87,7 +87,7 @@ function BuyerRequest({ PropertyId_TokenId, OwnerAddress }) {
                 value
             }
             const result = await buyer_Request(contract, accounts, newOffer, dispatch);
-            console.log(result)
+           // console.log(result)
             setTransactionInProcess(false)
             setTransactionSuccessful(true)
 
@@ -99,22 +99,27 @@ function BuyerRequest({ PropertyId_TokenId, OwnerAddress }) {
         }
 
     }
-console.log(Data)
+//console.log(Data)
     return <div> 
         <h3>{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
         {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
-        
+        <br/>
         <form onSubmit={onSubmit} >
             <div className="center">
                 {
-                   Data != OwnerAddress ? <h3>SoldOut</h3> : <div className="center">
-                        <h3>Want to Bid?</h3>
+                   Data != OwnerAddress ?<div style={{background: "#01bf71",
+                   margin: "10px auto 10px auto",
+                   width: "58%"}}> <h3>SoldOut</h3></div> : <div className="center">
+                        <h3>Make a Bid?</h3>
                         <input type="text" required onChange={(e) => setvalue(e.target.value)} />
                         <button className="contractBtn" style={{ background: "blue", color: "white" }}> Buy Request</button></div>
                 }
             </div>
         </form>
+        <br/>
     </div>
 }
-
+// background: #01bf71;
+//     margin: 10px auto 10px auto;
+//     width: 58%;
 export default BuyerRequest;

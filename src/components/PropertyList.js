@@ -65,7 +65,7 @@ export const PropertyList = () => {
                 return returnValues
             }
             else {
-                console.log("CALL AGAIN")
+               // console.log("CALL AGAIN")
                 return await getProperties()
             }
         }
@@ -79,13 +79,13 @@ export const PropertyList = () => {
             }
         )();
     }, [events])
-    console.log(myData)
+   // console.log(myData)
     const classes = useStyles();
     return (
-        <>
+        <div >
             <h3>{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
             {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
-            <div className="Products">
+            <div className="Products" >
                 <div className={classes.root}>
                     <Grid container spacing={3}>
                         {(myData).map((item) => {
@@ -95,13 +95,13 @@ export const PropertyList = () => {
                                     <div className="ProductItem">
                                         <Link className="link" keys={id} to={`/property/${id}`} >
                                             <div className="center">
-                                                <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px" height="320px" maxWidth="100%" /></div>
+                                                <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px"  maxWidth="100%" /></div>
                                             <Paper className={classes.paper} elevation={3} >
                                                 <div >
-                                                    <h6>Property Address: {item[2]}</h6>
+                                                    <h6>Address: {item[2]}</h6>
                                                     <h6>City: {item[3]}</h6>
                                                     <h6>Area: {item[5]}</h6>
-                                                    <h6>Property Type: {item[6]}</h6>
+                                                    <h6>Type: {item[6]}</h6>
                                                     <h6>Price: {Web3.utils.fromWei(item[7].toString(), 'Ether')} Eth</h6>
                                                 </div>
                                             </Paper>
@@ -114,6 +114,7 @@ export const PropertyList = () => {
                     </Grid>
                 </div>
             </div>
-        </>
+            <br />
+        </div>
     )
 }

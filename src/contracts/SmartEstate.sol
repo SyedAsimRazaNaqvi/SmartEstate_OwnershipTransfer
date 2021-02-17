@@ -6,12 +6,12 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 contract SmartEstate is ERC721 {
    uint256 private buyerId;
     uint256 public tokenId;
-   // uint256 public sellerAddress;
+   // address payable owner;
     enum offerApproval {pending, approved, rejected}
     event saleStatus(bool);
 
     struct PropertyDetails {
-        address sellerAddress;
+        address payable sellerAddress;
         uint256 propertyId;
         string propertyAddress;
         string city;
@@ -243,9 +243,7 @@ contract SmartEstate is ERC721 {
             "Error: This Property not for sale (Offer request not approved)"
         );
         require(msg.value > 0, "Error: Ether(s) not provided ");
-        // uint256 PropertyPrice = BuyerList[msg.sender].buyerOffer.mul(
-        //     1 * 10**18
-        // );
+     
         uint256 PropertyPrice = PropertyBuyerList[PropertyId_TokenId][msg.sender].buyerOffer.mul(
             1 * 10**18
         );
@@ -255,8 +253,9 @@ contract SmartEstate is ERC721 {
         );
         address BuyerAddress = OnlyOwner[PropertyList[PropertyId_TokenId]].sellerAddress;
          _transfer(BuyerAddress, msg.sender, PropertyId_TokenId);
+        address payable owner = OnlyOwner[PropertyList[PropertyId_TokenId]].sellerAddress;
+        bool isFundSend =  owner.send(msg.value);
          OnlyOwner[PropertyList[PropertyId_TokenId]].saleStatus = false;
-        //  OnlyOwner[PropertyList[PropertyId_TokenId]].sold = true;
-        return true;
+        return isFundSend;
     }
 }

@@ -6,7 +6,7 @@ import Loader from '../images/loader.gif'
 
 export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
 
-    const [{ contract, accounts }, dispatch] = useStore();
+    const [{ contract, accounts }] = useStore();
     const [isTransactionInProcess, setTransactionInProcess] = useState(false)
     const [isTransactionSuccessful, setTransactionSuccessful] = useState(true)
     const [transactionError, setTransactionError] = useState("")
@@ -22,7 +22,7 @@ export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
             setTransactionError(error.message)
         }
     })
-    console.log(Data)
+    //console.log(Data)
     useEffect(() => {
         getOffers();
     }, [])
@@ -36,7 +36,8 @@ export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
             }
         })
     }
-    const r = getResponse()
+    // const r = getResponse()
+    getResponse()
     const responseStatus = states[3]
     const responsetoken = states.ApplyForToken
     const val = states[2]

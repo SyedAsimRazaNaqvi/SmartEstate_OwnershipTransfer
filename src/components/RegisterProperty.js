@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
             margin: theme.spacing(1),
-            width: '50ch',
+            // width: '50ch',
+            width:"34%"
         },
     },
 }));
@@ -95,8 +96,6 @@ export const RegisterProperty = () => {
 
     }
 
-    const buttonclasses = useStyle();
-
     return (
 
         <>
@@ -143,7 +142,7 @@ export const RegisterProperty = () => {
 
                     <FormControl variant="outlined" >
 
-                        <InputLabel htmlFor="outlined-room-native-simple">Property Listing</InputLabel>
+                        <InputLabel htmlFor="outlined-room-native-simple">Property Type</InputLabel>
 
                         <Select
                             native
@@ -165,8 +164,8 @@ export const RegisterProperty = () => {
 
                     <TextField type="number" id="outlined-basic" label="Amount" value={_priceInEther} onChange={(e) => setpriceInEther(e.target.value)} variant="outlined" required />
 
-                    <div style={{marginLeft:"auto",margin:"auto"}}>
-                        <input type="file" name="_image" className="chooseImage" onChange={(e) => {
+                    <div style={{marginLeft:"auto",marginRight:"auto"}}>
+                        <input style={{width:"210px"}} type="file" name="_image" className="chooseImage" onChange={(e) => {
                             e.preventDefault()
                             const file = e.target.files[0]
                             const reader = new window.FileReader()
@@ -181,7 +180,7 @@ export const RegisterProperty = () => {
 
 
 
-                    <TextField style={{ width: "102.25ch" }} type="textarea" id="outlined-basic" label="Additional Information" value={_tokenUri} onChange={(e) => settokenUri(e.target.value)} variant="outlined" />
+                    <TextField style={{ width: "68%" }} type="textarea" id="outlined-basic" label="Additional Information" value={_tokenUri} onChange={(e) => settokenUri(e.target.value)} variant="outlined" />
                     {
                         isTransactionInProcess ?
                             <div className="contractBtn" style={{ background: "blue", color: "white" }}> Transaction in Process...</div> :

@@ -1,8 +1,8 @@
 import React from 'react';
-import Grid from '../Grid'; //Services
+import Grid from '../Grid'; 
 import HeroSection from '../HeroSection';
 import InfoSection from '../InfoSection';
-import { homeObjOne, homeObjThree, homeObjTwo,homeObjFour } from '../InfoSection/Data';
+import { homeObjOne,homeObjTwo, homeObjThree } from '../InfoSection/Data';
 import { OwnershipTransferList } from '../OwnershipTransferList';
 
 

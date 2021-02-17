@@ -24,7 +24,6 @@ export const homeObjTwo = {
     headline: 'Ethereum is a platform and a programming language that makes it possible for any developer to build and publish next-generation decentralized applications. ',
     description: 'Ethereum can be used to codify, decentralize, secure and trade just about anything: voting, domain names, financial exchanges, crowdfunding, company governance, contracts and agreements of most kind, intellectual property, and even smart property thanks to hardware integration.',
     description2: 'Ethereum programmers can create tokens to represent any kind of digital asset, track its ownership and execute its functionality according to a set of programming instructions.',
-    description3: 'We have used ERC721 token for our application, its non-fungible token, non-fungible are tokens which represents unique identity of property/Object, ERC721 allows user to transfer ownership of one token to another user.',
     imgStart: true,
     img: require('../images/image7.svg'),
     alt: 'House',

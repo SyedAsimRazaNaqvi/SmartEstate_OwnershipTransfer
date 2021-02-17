@@ -1,14 +1,17 @@
 import React from 'react';
-import { OwnershipTransferList } from '../OwnershipTransferList';
+// import OfferStatus from '../OfferStatus';
+import DeveloperSection from '../About/DeveloperSection'
+import {AboutSmartEstate} from "../About/Data"
 
-function About() {
+import Ebout from '../About'
+
+const about = () => {
     return (
-      <div className="heading">
-        <h1>Welcome to About page</h1> 
-        <OwnershipTransferList />
-       
-      </div>
+      <>
+      <Ebout {...AboutSmartEstate}/>
+      <DeveloperSection/>
+      </>
     );
   }
   
-  export default About;
+  export default about;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Video from '../video/video.mp4';
 import { Button } from "../ButtonElement";
+import { Link } from 'react-router-dom';
 import {
     HeroContainer,
     HeroBg,
@@ -33,16 +34,18 @@ const HeroSection = () => {
                 <HeroH1> Now Buying House Is So Much Easy </HeroH1>
 
                 <HeroP>
-                    Sign up right now.
+                    Do Register Now.
         </HeroP>
 
-                <HeroBtnWrapper>
+                <HeroBtnWrapper >
 
-                    <Button to='signup' onMouseEnter={onHover} onMouseLeave={onHover}
+                    <Button to='/RegisterProperty'  onMouseEnter={onHover} onMouseLeave={onHover}
                         primary='true'
                         dark='true'
                     >
+                        <Link className='btnhero' to='/RegisterProperty'> 
                         Let's Get it started {hover ? <ArrowForward /> : <ArrowRight />}
+                    </Link>
                     </Button>
 
                 </HeroBtnWrapper>

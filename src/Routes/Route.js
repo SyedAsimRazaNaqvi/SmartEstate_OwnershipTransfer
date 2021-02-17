@@ -11,6 +11,7 @@ import NonCommercial from '../components/NonCommercial';
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar/index'
 import Footer from '../components/Footer/index'
+import PageNotFound from '../components/pages/PageNotFound';
 
 
 
@@ -27,13 +28,13 @@ function RouteConfig() {
                 <Sidebar isOpen={isOpen} toggle={toggle} />
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/About" component={About} />
+                    <Route path="/About" component={About} />
                     <Route exact path="/RegisterProperty" component={RegisterProperty} />
                     <Route exact path="/property" component={propertyList} />
                     <Route exact path="/commercial" component={Commercial} />
                     <Route exact path="/residential" component={NonCommercial} />
                     <Route path="/property/:id" component={PropertyItem} />
-                    <Route path="*" component={() => <h2> 404 Not Found</h2>} />
+                    <Route path="*" component={PageNotFound} />
 
                 </Switch>
                 <Footer />

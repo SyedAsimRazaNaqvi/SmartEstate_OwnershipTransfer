@@ -20,9 +20,11 @@ export const EthAccountInfo = () => {
         if (accounts && accounts[0]) {
             return (
                 <div className="center">
-                  <b>  <span>Current Address: </span><span>{accounts[0]}</span></b>
+                    <div><b>Account Info</b></div>
+                  <span><b>Current Address:</b> </span><span>{accounts[0]}</span>
                     <br />
-                 <b>   <span>Balance: </span><span>{accountBalance} ethers</span></b>
+                <h6><b>Balance:</b> {accountBalance} ethers</h6>
+                <br/>
                 </div>
             );
         }

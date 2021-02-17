@@ -22,7 +22,7 @@ function OfferAccepting({ PropertyId_TokenId, BuyerAddress, useStore }) {
 
         {       isTransactionInProcess ?
                                 <div className="btn" style={{ background: "blue", color: "white" }}> Transaction in Process...</div> :
-                                <div className="center"> <button className="btn" onClick={() => offerAccepted()} style={{ background: "blue", color: "white" }}> Accept Offer</button></div>
+                                <div className="center"> <button className="contractBtn" onClick={() => offerAccepted()} style={{ background: "blue", color: "white" }}> Accept Offer</button></div>
                         }
      
     </>
