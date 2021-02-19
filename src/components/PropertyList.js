@@ -12,6 +12,8 @@ import './App.css'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+    //   display:"flex",
+    //   justifyContent : "space-evenly"
     },
     paper: {
         padding: theme.spacing(2),
@@ -87,7 +89,7 @@ export const PropertyList = () => {
             {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
             <div className="Products" >
                 <div className={classes.root}>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} style={{display:"flex",justifyContent:"space-evenly"}} >
                         {(myData).map((item) => {
                             for (var a in item) {
                                 var id = item[1]
@@ -95,7 +97,7 @@ export const PropertyList = () => {
                                     <div className="ProductItem">
                                         <Link className="link" keys={id} to={`/property/${id}`} >
                                             <div className="center">
-                                                <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px"  maxWidth="100%" /></div>
+                                                <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px" height="240px"  maxWidth="100%" /></div>
                                             <Paper className={classes.paper} elevation={3} >
                                                 <div >
                                                     <h6>Address: {item[2]}</h6>

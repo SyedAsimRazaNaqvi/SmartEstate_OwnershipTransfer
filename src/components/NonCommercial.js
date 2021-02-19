@@ -86,7 +86,7 @@ function NonCommercial() {
             {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
             <div className="Products">
                 <div className={classes.root}>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} style={{display:"flex",justifyContent:"space-evenly"}}>
                         {(myData).map((item) => {
                             for (var a in item) {
                                 if (item[6] === "Residential") {

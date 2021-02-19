@@ -86,7 +86,7 @@ function Commercial() {
             {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
             <div className="Products">
                 <div className={classes.root}>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} style={{display:"flex",justifyContent:"space-evenly"}}>
                         {(myData).map((item) => {
                             for (var a in item) {
                                 if (item[6] === "Commercial") {
@@ -95,7 +95,7 @@ function Commercial() {
                                         <div className="ProductItem">
                                             <Link className="link" keys={id} to={`/property/${id}`} >
                                                 <div className="center">
-                                                    <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px" height="320px" maxWidth="100%" /></div>
+                                                    <img src={`https://ipfs.infura.io/ipfs/${item[8]}`} width="320px" height="240px" maxWidth="100%" /></div>
                                                 <Paper className={classes.paper} elevation={3} >
                                                     <div >
                                                         <h6>Property Address: {item[2]}</h6>

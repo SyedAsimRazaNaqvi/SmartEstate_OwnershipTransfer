@@ -26,13 +26,12 @@ function BuyerRequest({ PropertyId_TokenId, OwnerAddress }) {
     useEffect(() => {
         const newOwner =  contract.methods.ownerOf(PropertyId_TokenId).call().then(function (result, error) {
             if (result) {
-              //  console.log(JSON.stringify(result),result)
                 setData(result)
             } else if (error) {
                 console.log(error)
-                // setTransactionInProcess(false);
-                // setTransactionSuccessful(false)
-                // setTransactionError(error.message)
+                setTransactionInProcess(false);
+                setTransactionSuccessful(false)
+                setTransactionError(error.message)
             }
         })
         
