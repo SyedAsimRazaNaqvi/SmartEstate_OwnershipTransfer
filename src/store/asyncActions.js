@@ -5,14 +5,15 @@ import SmartEstate from "../abis/SmartEstate.json";
 export const loadBlockchain = async (dispatch) => {
 
     try {
-        // console.log("web3 =", Web3);
         console.log("web3.givenProvider = ", Web3.givenProvider);
         if (Web3.givenProvider) {
             const web3 = new Web3(Web3.givenProvider);
             await Web3.givenProvider.enable();
             dispatch(setupWeb3(web3));
-            const address = '0x9646EDC7B07825FDa0a63312f6d22D8dFcb9D237'
-            const contract = new web3.eth.Contract(SmartEstate.abi, address)
+            //const address = '0x9646EDC7B07825FDa0a63312f6d22D8dFcb9D237'
+            const networkId = await web3.eth.net.getId();
+            const network = SmartEstate.networks[networkId];
+            const contract = new web3.eth.Contract(SmartEstate.abi, network.address)
             dispatch(setupContract(contract));
             console.log(contract)
             const accounts = await web3.eth.getAccounts();
@@ -21,8 +22,6 @@ export const loadBlockchain = async (dispatch) => {
             
             const TokenId = await contract.methods.tokenId().call().then(function (result, error) {
                 if (result) {
-                    // console.log(result);
-
                     for (let i = 1; i <= result; i++) {
                         if (contract) {
                             const land = contract.methods.AllPropertyList(i).call().then(function (data, error) {
@@ -42,8 +41,6 @@ export const loadBlockchain = async (dispatch) => {
                                 if (data) {
                                     allData[i] = data
                                       dispatch(owners(data))
-                                       
-                                       //console.log(data,allData)
                                 } else if (error) {
                                     console.log(error)
                                 }
@@ -148,15 +145,14 @@ export const transfer_Info = (contract) => {
 }
 
 export const buyer_Request = async (contract, accounts, offer, dispatch) => {
-    console.log("before transaction")
-
+    //console.log("before transaction")
     const receipt = await contract.methods.BuyingRequest(offer.PropertyId_TokenId, offer.value).send({ from: accounts[0] });
    // console.log("after transaction ", receipt)
     dispatch(BuyingRequest(offer))
 }
 
 export const offerStatus = async (contract, PropertyId_TokenId, dispatch) => {
-    console.log("before transaction")
+   // console.log("before transaction")
     const receipt = await contract.methods.OfferStatus(PropertyId_TokenId).call()
 
    // console.log("after transaction ", receipt)
