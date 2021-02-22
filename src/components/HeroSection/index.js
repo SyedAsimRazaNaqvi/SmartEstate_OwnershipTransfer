@@ -13,6 +13,7 @@ import {
     ArrowForward,
     ArrowRight
 } from "./HeroElements";
+import { NavBtn } from '../Navbar/NavbarElemets';
 
 const HeroSection = () => {
 
@@ -37,18 +38,13 @@ const HeroSection = () => {
                     Do Register Now.
         </HeroP>
 
-                <HeroBtnWrapper >
 
-                    <Button to='/RegisterProperty'  onMouseEnter={onHover} onMouseLeave={onHover}
+                <NavBtn>
+                    <Link className="Btn" to='/RegisterProperty' onMouseEnter={onHover} onMouseLeave={onHover}
                         primary='true'
-                        dark='true'
-                    >
-                        <Link className='btnhero' to='/RegisterProperty'> 
-                        Let's Get it started {hover ? <ArrowForward /> : <ArrowRight />}
-                    </Link>
-                    </Button>
+                        dark='true'>  Let's Get it started {hover ? <ArrowForward /> : <ArrowRight />}</Link>
+                </NavBtn>
 
-                </HeroBtnWrapper>
             </HeroContent>
         </HeroContainer>
     );
