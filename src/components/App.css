@@ -161,10 +161,9 @@ h3, image{
       margin-top: 15px;;
       cursor: pointer;
       transition: all 0.2 ease-in-out;
-      text-decoration: none;
+      text-decoration: none !important;
     display: flex;
   align-items: center;
-  
   
   @media screen and (max-width: 768px) {
       display: none;
