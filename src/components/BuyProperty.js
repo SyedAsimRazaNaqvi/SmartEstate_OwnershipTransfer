@@ -10,7 +10,6 @@ export const BuyProperty = ({ PropertyId_TokenId, val, OwnerAddress, BuyerAddres
     const [isTransactionInProcess, setTransactionInProcess] = useState(false)
     const [isTransactionSuccessful, setTransactionSuccessful] = useState(true)
     const [transactionError, setTransactionError] = useState("")
-    // console.log(val,Web3.utils.toWei(val,'ether'))
     const buy_Property = async () => {
         const Buy = await contract.methods.BuyProperty(PropertyId_TokenId).send({ from: accounts[0], to: OwnerAddress, value: Web3.utils.toWei(val, 'ether') })
         console.log(Buy, "buy_Property Function Run Successfully")
@@ -28,5 +27,3 @@ export const BuyProperty = ({ PropertyId_TokenId, val, OwnerAddress, BuyerAddres
     )
 }
 
-
-// export default Buyproperty;

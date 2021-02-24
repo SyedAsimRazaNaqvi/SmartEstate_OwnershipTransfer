@@ -108,7 +108,7 @@ function BuyerRequest({ PropertyId_TokenId, OwnerAddress }) {
                 {
                    Data != OwnerAddress ?<div style={{background: "#01bf71",
                    margin: "10px auto 10px auto",
-                   width: "58%"}}> <h3>SoldOut</h3></div> : <div className="center">
+                   width: "58%"}}> <h3>Sold Out</h3></div> : <div className="center">
                         <h3>Make a Bid?</h3>
                         <input type="text" required onChange={(e) => setvalue(e.target.value)} />
                         <button className="contractBtn" style={{ background: "blue", color: "white" }}> Buy Request</button></div>
@@ -118,7 +118,5 @@ function BuyerRequest({ PropertyId_TokenId, OwnerAddress }) {
         <br/>
     </div>
 }
-// background: #01bf71;
-//     margin: 10px auto 10px auto;
-//     width: 58%;
+
 export default BuyerRequest;
