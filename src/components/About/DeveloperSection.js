@@ -49,7 +49,7 @@ export default function CenteredGrid() {
                        <Divider />
                        <Typography  variant="h6"  style={{paddingTop:'5px'}} ><b>Skills</b></Typography>
                     
-                       <Typography  style={{paddingTop:'5px'}}><b>Blockchain | Reactjs | React-Native |JamStack</b> </Typography>
+                       <Typography  style={{paddingTop:'5px'}}><b>Blockchain | ReactJs | React-Native |JamStack</b> </Typography>
                        
           </CardContent>
         </Card>
@@ -65,7 +65,7 @@ export default function CenteredGrid() {
                        <Divider />
                        <Typography variant="h6"  style={{paddingBottom:'5px'}}><b>Skills</b></Typography>
                        
-                       <Typography style={{paddingTop:'5px'}}><b>UI/UX | Reactjs | Graphic Designer | React-Native</b> </Typography>
+                       <Typography style={{paddingTop:'5px'}}><b>UI/UX | ReactJs | Graphic Designer | React-Native</b> </Typography>
                        
           </CardContent>
         </Card>
@@ -82,7 +82,7 @@ export default function CenteredGrid() {
                        <Divider />
                        <Typography variant="h6"  style={{paddingBottom:'5px'}}><b>Skills</b></Typography>
                        
-                       <Typography style={{paddingTop:'5px'}}><b>Blockchain | Reactjs | React-Native | JamStack</b> </Typography>
+                       <Typography style={{paddingTop:'5px'}}><b>Blockchain | ReactJs | React-Native | JamStack</b> </Typography>
                        
           </CardContent>
         </Card>
@@ -98,7 +98,7 @@ export default function CenteredGrid() {
                        <Divider />
                        <Typography variant="h6"  style={{paddingBottom:'5px'}}><b>Skills</b></Typography>
                        
-                       <Typography style={{paddingTop:'5px'}}><b>UI/UX Designer | Reactjs | Hybrid Mobile Developer (Flutter)</b> </Typography>
+                       <Typography style={{paddingTop:'5px'}}><b>UI/UX Designer | ReactJs | Hybrid Mobile Developer (Flutter)</b> </Typography>
                        
           </CardContent>
         </Card>
